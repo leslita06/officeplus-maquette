@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Office Plus · Fournitures, cartouches et mobilier de bureau à Abidjan</title>
+<meta name="description" content="Office Plus, fournitures de bureau, cartouches d'encre et toners, matériel et mobilier de bureau à Abidjan. Demandez votre devis en ligne ou sur WhatsApp.">
+<link rel="icon" href="assets/img/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--vert:#00A877;--vert-f:#007E59;--orange:#F07C1E;--orange-f:#D9620B;--bleu:#6AA0C6;--encre:#1F2523;--gris:#5E6662;--fond:#F6F7F4;--blanc:#fff;--r:18px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+section,[id]{scroll-margin-top:90px}
+body{font-family:Poppins,system-ui,sans-serif;color:var(--encre);background:var(--blanc);line-height:1.55;font-size:16px;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{width:min(1180px,92vw);margin:auto}
+h1,h2,h3{font-family:Oswald,Poppins,sans-serif;text-transform:uppercase;letter-spacing:.01em;line-height:1.05}
+.demo{background:var(--encre);color:#E9ECE9;font-size:12.5px;text-align:center;padding:7px 12px;letter-spacing:.02em}
+.demo b{color:#fff;font-weight:600}
+header.nav{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-bottom:1px solid #E6E9E4}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:74px;gap:20px}
+.nav .logo img{height:48px;width:auto}
+.nav nav{display:flex;gap:26px;font-weight:500;font-size:15px}
+.nav nav a{text-decoration:none}
+.nav nav a:hover{color:var(--vert-f)}
+.btn{display:inline-flex;align-items:center;gap:10px;border:0;border-radius:999px;padding:14px 24px;font:600 15px Poppins,sans-serif;text-decoration:none;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,0,0,.12)}
+.btn-o{background:var(--orange);color:#fff}
+.btn-v{background:var(--vert);color:#fff}
+.btn-w{background:#25D366;color:#0B3B23}
+.btn-l{background:#fff;color:var(--encre);border:1.5px solid #D5DAD3}
+.btn svg{width:20px;height:20px}
+.burger{display:none}
+/* héros */
+.hero{position:relative;background:linear-gradient(115deg,var(--vert) 0 56%,var(--orange) 56% 100%);color:#fff;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding:70px 0 84px}
+.hero .tag{display:inline-block;background:var(--encre);color:#fff;border-radius:999px;padding:7px 16px;font:600 13px Poppins;letter-spacing:.06em;text-transform:uppercase;transform:rotate(-2deg)}
+.hero h1{font-size:clamp(46px,6.4vw,84px);margin:18px 0 18px}
+.hero h1 span{display:block;font-family:Poppins;text-transform:none;font-weight:700;font-size:.6em;letter-spacing:-.01em;margin-top:6px}
+.hero p.lead{font-size:18px;max-width:520px;opacity:.96}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+.hero .ph{position:relative}
+.hero .ph img{border-radius:28px;box-shadow:0 30px 60px rgba(0,0,0,.25);aspect-ratio:4/3.4;object-fit:cover;width:100%}
+.hero .badge{position:absolute;left:-26px;bottom:26px;background:#fff;color:var(--encre);border-radius:18px;padding:16px 20px;box-shadow:0 18px 40px rgba(0,0,0,.2);max-width:270px}
+.hero .badge b{display:block;font:700 22px Oswald;text-transform:uppercase;color:var(--orange-f)}
+.hero .badge small{font-size:12px;color:var(--gris)}
+.ring{position:absolute;border:3px solid rgba(255,255,255,.55);border-radius:50%}
+/* bande engagements */
+.atouts{background:var(--fond)}
+.atouts .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding:34px 0}
+.atout{display:flex;gap:14px;align-items:flex-start}
+.atout i{flex:0 0 46px;height:46px;border-radius:14px;display:grid;place-items:center;background:#fff;color:var(--vert-f);box-shadow:0 2px 0 #E2E6E0}
+.atout i svg{width:24px;height:24px}
+.atout b{display:block;font-size:15px}
+.atout span{font-size:13.5px;color:var(--gris)}
+/* catalogue */
+section{padding:84px 0}
+.kicker{font:600 13px Poppins;letter-spacing:.14em;text-transform:uppercase;color:var(--orange-f)}
+.titre{font-size:clamp(34px,4vw,52px);margin:8px 0 14px}
+.sous{color:var(--gris);max-width:640px}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin:34px 0 26px}
+.tab{border:1.5px solid #D5DAD3;background:#fff;border-radius:999px;padding:10px 18px;font:500 14.5px Poppins;cursor:pointer}
+.tab[aria-selected=true]{background:var(--encre);border-color:var(--encre);color:#fff}
+.cat{display:none}
+.cat.on{display:grid;grid-template-columns:1fr 1.25fr;gap:28px;align-items:stretch}
+.cat .visu{border-radius:var(--r);overflow:hidden;position:relative;min-height:380px}
+.cat .visu img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.cat .visu .lab{position:absolute;left:18px;bottom:18px;background:var(--orange);color:#fff;font:700 22px Oswald;text-transform:uppercase;padding:8px 16px;border-radius:12px}
+.cat .liste{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-content:start}
+.prod{border:1px solid #E3E7E1;border-radius:14px;padding:16px 16px 14px;display:flex;flex-direction:column;gap:8px;background:#fff}
+.prod b{font-size:15px;line-height:1.3}
+.prod small{color:var(--gris);font-size:12.8px}
+.prod .add{margin-top:auto;align-self:flex-start;border:0;background:var(--fond);border-radius:999px;padding:7px 13px;font:600 12.5px Poppins;color:var(--vert-f);cursor:pointer}
+.prod .add.ok{background:var(--vert);color:#fff}
+.cat .note{grid-column:1/-1;font-size:13px;color:var(--gris)}
+/* mobilier mise en avant */
+.mob{background:var(--encre);color:#fff;overflow:hidden}
+.mob .wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.mob .titre{color:#fff}
+.mob p{color:#C9D0CB}
+.mob ul{list-style:none;margin:22px 0 28px;display:grid;gap:12px}
+.mob li{display:flex;gap:12px;align-items:flex-start}
+.mob li:before{content:"";flex:0 0 22px;height:22px;border-radius:50%;background:var(--orange) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2'%3E%3Cpath d='M5 12l5 5 9-10'/%3E%3C/svg%3E") center/13px no-repeat;margin-top:2px}
+.mob .duo{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.mob .duo img{border-radius:var(--r);height:420px;object-fit:cover;width:100%}
+.mob .duo img:last-child{margin-top:60px}
+/* comment ça marche */
+.etapes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+.etape{background:var(--fond);border-radius:var(--r);padding:28px}
+.etape em{font:700 46px Oswald;color:var(--orange);font-style:normal;line-height:1}
+.etape h3{font-size:22px;margin:10px 0 8px}
+.etape p{color:var(--gris);font-size:15px}
+/* devis */
+.devis{background:linear-gradient(180deg,var(--fond),#fff)}
+.devis .wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:46px;align-items:start}
+.devis aside .card{background:var(--vert);color:#fff;border-radius:var(--r);padding:28px;margin-top:26px}
+.devis aside .card h3{font-size:24px;margin-bottom:8px}
+.devis aside .card p{opacity:.95;font-size:15px;margin-bottom:18px}
+.devis aside .coord{margin-top:22px;display:grid;gap:10px;font-size:15px}
+.devis aside .coord div{display:flex;gap:10px;align-items:flex-start}
+.devis aside .coord svg{flex:0 0 20px;width:20px;height:20px;color:var(--vert-f);margin-top:2px}
+form{background:#fff;border:1px solid #E1E5DF;border-radius:22px;padding:30px;box-shadow:0 24px 50px rgba(31,37,35,.07)}
+.steps{display:flex;gap:8px;margin-bottom:22px}
+.steps span{flex:1;height:6px;border-radius:6px;background:#E5E9E3}
+.steps span.on{background:var(--orange)}
+fieldset{border:0;display:none}
+fieldset.on{display:block}
+legend{font:700 24px Oswald;text-transform:uppercase;margin-bottom:6px}
+.aide{color:var(--gris);font-size:14px;margin-bottom:18px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label{display:block;font-size:13.5px;font-weight:600;margin:0 0 6px}
+input,select,textarea{width:100%;border:1.5px solid #D5DAD3;border-radius:12px;padding:12px 14px;font:400 15px Poppins;background:#fff;color:var(--encre)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--vert)}
+.champ{margin-bottom:14px}
+.err{color:#C2410C;font-size:12.5px;margin-top:5px;display:none}
+.champ.bad input,.champ.bad select,.champ.bad textarea{border-color:#E46A2E}
+.champ.bad .err{display:block}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.chip input{display:none}
+.chip span{display:inline-block;border:1.5px solid #D5DAD3;border-radius:999px;padding:9px 15px;font-size:14px;cursor:pointer}
+.chip input:checked+span{background:var(--vert);border-color:var(--vert);color:#fff}
+.lignes{display:grid;gap:10px;margin-bottom:10px}
+.ligne{display:grid;grid-template-columns:1fr 92px 36px;gap:8px}
+.ligne button{border:0;background:var(--fond);border-radius:10px;cursor:pointer;font-size:18px;color:var(--gris)}
+.plus{border:1.5px dashed #C7CEC5;background:#fff;border-radius:12px;padding:10px;width:100%;font:600 14px Poppins;color:var(--vert-f);cursor:pointer;margin-bottom:14px}
+.nav-f{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:10px;flex-wrap:wrap}
+.recap{background:var(--fond);border-radius:14px;padding:16px 18px;font-size:14px;margin-bottom:16px}
+.recap b{display:block;margin-bottom:6px}
+.merci{display:none;text-align:center;padding:16px 4px}
+.merci .ok{width:74px;height:74px;border-radius:50%;background:var(--vert);margin:0 auto 16px;display:grid;place-items:center}
+.merci .ok svg{width:38px;height:38px;color:#fff}
+.merci h3{font-size:30px;margin-bottom:8px}
+.merci .ref{display:inline-block;background:var(--fond);border-radius:10px;padding:8px 14px;font:600 15px Poppins;margin:12px 0 18px}
+.merci p{color:var(--gris)}
+.merci .ctas{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:18px}
+/* faq */
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:34px}
+details{border:1px solid #E1E5DF;border-radius:14px;padding:18px 20px;background:#fff}
+summary{font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:10px}
+summary:after{content:"+";color:var(--orange-f);font-size:22px;line-height:1}
+details[open] summary:after{content:"–"}
+details p{color:var(--gris);font-size:15px;margin-top:10px}
+/* pied */
+footer{background:#141917;color:#BFC7C1;padding:56px 0 26px;font-size:14.5px}
+footer .wrap{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:30px}
+footer h4{color:#fff;font:600 14px Poppins;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+footer a{text-decoration:none}
+footer .bas{grid-column:1/-1;border-top:1px solid #2A322E;padding-top:18px;margin-top:10px;font-size:12.5px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.soc{display:flex;gap:10px;margin-top:14px}
+.soc a{width:38px;height:38px;border-radius:50%;background:#222A26;display:grid;place-items:center}
+.soc svg{width:18px;height:18px;color:#fff}
+/* WhatsApp flottant */
+.wa{position:fixed;right:20px;bottom:20px;z-index:60;width:60px;height:60px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 12px 28px rgba(0,0,0,.25)}
+.wa svg{width:32px;height:32px;color:#fff}
+.barre{display:none}
+@media (max-width:900px){
+ .nav nav,.nav .btn{display:none}
+ .nav .wrap{height:64px}.nav .logo img{height:40px}
+ .hero{background:linear-gradient(160deg,var(--vert) 0 64%,var(--orange) 64% 100%)}
+ .hero .wrap{grid-template-columns:1fr;padding:44px 0 56px}
+ .hero .badge{left:12px;bottom:-18px}
+ .atouts .wrap{grid-template-columns:1fr 1fr}
+ .cat.on{grid-template-columns:1fr}
+ .cat .visu{min-height:230px}
+ .cat .liste{grid-template-columns:1fr}
+ .mob .wrap,.devis .wrap{grid-template-columns:1fr}
+ .mob .duo img{height:260px}
+ .etapes,.faq{grid-template-columns:1fr}
+ footer .wrap{grid-template-columns:1fr 1fr}
+ section{padding:60px 0}
+ .grid2{grid-template-columns:1fr}
+ form{padding:22px}
+ .wa{display:none}
+ .barre{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:60;background:#fff;padding:10px 12px;border-top:1px solid #E1E5DF}
+ .barre .btn{justify-content:center;padding:12px 10px;font-size:14px}
+ body{padding-bottom:70px}
+ .demo .dl{display:none}
+ .nav-f .btn{flex:1;justify-content:center}
+ section,[id]{scroll-margin-top:76px}
+}
+@media (max-width:520px){.atouts .wrap{grid-template-columns:1fr} footer .wrap{grid-template-columns:1fr} .hero .ctas .btn{width:100%;justify-content:center}}
+</style>
+</head>
+<body>
+<div class="demo">Maquette proposée par <b>Yelema</b>, non publiée<span class="dl"> · les demandes envoyées depuis cette page ne sont transmises à personne</span></div>
+
+<header class="nav">
+ <div class="wrap">
+  <a class="logo" href="#top" aria-label="Office Plus, accueil"><img src="assets/img/logo.svg" alt="Office Plus business solutions"></a>
+  <nav>
+   <a href="#catalogue">Catalogue</a>
+   <a href="#mobilier">Mobilier</a>
+   <a href="#comment">Comment commander</a>
+   <a href="#faq">Questions</a>
+   <a href="#contact">Contact</a>
+  </nav>
+  <a class="btn btn-o" href="#devis">Demander un devis</a>
+ </div>
+</header>
+
+<main id="top">
+<section class="hero" style="padding:0">
+ <span class="ring" style="width:220px;height:220px;right:-70px;top:-70px"></span>
+ <span class="ring" style="width:140px;height:140px;left:-50px;bottom:40px"></span>
+ <div class="wrap">
+  <div>
+   <span class="tag">Fournisseur de bureau · Abidjan</span>
+   <h1>Tout pour<br>votre bureau<span>au même endroit, livré à Abidjan.</span></h1>
+   <p class="lead">Fournitures, cartouches d'encre et toners, matériel et mobilier de bureau. Envoyez votre liste, Office Plus vous répond avec un devis.</p>
+   <div class="ctas">
+    <a class="btn btn-o" href="#devis">Demander un devis</a>
+    <a class="btn btn-w" href="https://wa.me/2250566666575?text=Bonjour%20Office%20Plus%2C%20je%20souhaite%20un%20devis%20pour%20%3A%20" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.6-1.3a.4.4 0 0 0 0-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3Z"/></svg>Écrire sur WhatsApp</a>
+   </div>
+  </div>
+  <div class="ph">
+   <img src="assets/img/fournitures2.jpg" alt="Cahiers, stylos et fournitures de bureau sur un plan de travail clair">
+   <div class="badge"><b>Livré le même jour</b>Commande passée le matin avant 10 h, livrée l'après-midi.<br><small>Selon disponibilité des stocks.</small></div>
+  </div>
+ </div>
+</section>
+
+<div class="atouts">
+ <div class="wrap">
+  <div class="atout"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg></i><div><b>Livraison à Abidjan</b><span>Le jour même pour une commande avant 10 h, selon stock.</span></div></div>
+  <div class="atout"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 4l6 6-9 9H5v-6z"/><path d="M12 6l6 6"/></svg></i><div><b>Mobilier livré et monté</b><span>Livraison gratuite dans Abidjan et montage par l'équipe.</span></div></div>
+  <div class="atout"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h9l4 4v14H6z"/><path d="M9 12h7M9 16h7M9 8h3"/></svg></i><div><b>Devis sur demande</b><span>Pour une entreprise, une école ou une administration.</span></div></div>
+  <div class="atout"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></i><div><b>Boulevard de Marseille</b><span>Biétry, Abidjan. Lundi au vendredi 8 h 30 – 17 h, samedi 9 h – 12 h.</span></div></div>
+ </div>
+</div>
+
+<section id="catalogue">
+ <div class="wrap">
+  <div class="kicker">Catalogue</div>
+  <h2 class="titre">Ce qu'Office Plus fournit</h2>
+  <p class="sous">Choisissez une catégorie, ajoutez les articles à votre demande de devis, puis envoyez la liste en une fois. Les prix et références sont confirmés dans le devis.</p>
+  <div class="tabs" role="tablist">
+   <button class="tab" role="tab" aria-selected="true" data-c="fournitures">Fournitures &amp; papeterie</button>
+   <button class="tab" role="tab" aria-selected="false" data-c="cartouches">Cartouches &amp; toners</button>
+   <button class="tab" role="tab" aria-selected="false" data-c="materiel">Matériel de bureau</button>
+   <button class="tab" role="tab" aria-selected="false" data-c="mobilier">Mobilier</button>
+  </div>
+
+  <div class="cat on" id="c-fournitures">
+   <div class="visu"><img src="assets/img/fournitures3.jpg" alt="Stylos, surligneurs, trombones et carnets" loading="lazy"><span class="lab">Fournitures</span></div>
+   <div class="liste">
+    <div class="prod"><b>Ramettes de papier A4 80 g</b><small>À l'unité ou au carton de 5 ramettes</small><button class="add" data-p="Ramettes de papier A4 80 g">+ Ajouter au devis</button></div>
+    <div class="prod"><b>Stylos à bille</b><small>Bleu, noir, rouge · par paquet</small><button class="add" data-p="Stylos à bille (paquet)">+ Ajouter au devis</button></div>
+    <div class="prod"><b>Surligneurs</b><small>Couleurs assorties</small><button class="add" data-p="Surligneurs">+ Ajouter au devis</button></div>
+    <div class="prod"><b>Blocs-notes et cahiers</b><small>A5, A4 · par paquet</small><button class="add" data-p="Blocs-notes A5 (paquet)">+ Ajouter au devis</button></div>
+    <div class="prod"><b>Porte-documents et pochettes</b><small>Porte-vues, pochettes perforées</small><button class="add" data-p="Porte-documents / pochettes perforées">+ Ajouter au devis</button></div>
+    <div class="prod"><b>Classement et archivage</b><small>Classeurs, chemises, boîtes d'archives</small><button class="add" data-p="Classeurs et chemises">+ Ajouter au devis</button></div>
+    <div class="prod"><b>Carnets et manifolds</b><small>Carnets de reçus, bons, factures</small><button class="add" data-p="Manifolds / carnets de reçus">+ Ajouter au devis</button></div>
+    <div class="prod"><b>Rouleaux pour caisse et TPE</b><small>Bobines thermiques</small><button class="add" data-p="Rouleaux thermiques caisse / TPE">+ Ajouter au devis</button></div>
+   </div>
+  </div>
+
+  <div class="cat" id="c-cartouches">
+   <div class="visu"><img src="assets/img/cartouche.jpg" alt="Cartouche d'encre couleur posée sur du papier" loading="lazy"><span class="lab">Cartouches</span></div>
+   <div class="liste">
+    <div class="prod"><b>Cartouches jet d'encre</b><small>Noir et couleur, pour imprimantes de bureau</small><button class="add" data-p="Cartouches jet d'encre">+ Ajouter au devis</button></div>
+    <div class="prod"><b>Toners laser</b><small>Ex. : 205A noir, jaune, cyan, magenta</small><button class="add" data-p="Toners laser (ex. 205A)">+ Ajouter au devis</button></div>
+    <div class="prod"><b>Toners pour copieurs</b><small>Ex. : Canon C-EXV65 noir, jaune, bleu, rose</small><button class="add" data-p="Toners copieur (ex. Canon C-EXV65)">+ Ajouter au devis</button></div>
+    <div class="prod"><b>Vous ne connaissez pas la référence ?</b><small>Donnez le modèle de l'imprimante : Office Plus retrouve la bonne cartouche.</small><button class="add" data-p="Cartouche à identifier (modèle d'imprimante à préciser)">+ Ajouter au devis</button></div>
+    <div class="note">Les références citées sont celles déjà fournies par Office Plus à ses clients. Disponibilité et prix confirmés dans le devis.</div>
+   </div>
+  </div>
+
+  <div class="cat" id="c-materiel">
+   <div class="visu"><img src="assets/img/imprimante.jpg" alt="Imprimante multifonction de bureau" loading="lazy"><span class="lab">Matériel</span></div>
+   <div class="liste">
+    <div class="prod"><b>Compteuses de billets</b><small>Ex. : compteuse « Smart » à écran</small><button class="add" data-p="Compteuse de billets">+ Ajouter au devis</button></div>
+    <div class="prod"><b>Organisation du bureau</b><small>Organiseurs, trieurs, porte-revues</small><button class="add" data-p="Organiseurs de bureau">+ Ajouter au devis</button></div>
+    <div class="prod"><b>Petit matériel</b><small>Agrafeuses, perforatrices, ciseaux, calculatrices</small><button class="add" data-p="Petit matériel (agrafeuses, perforatrices…)">+ Ajouter au devis</button></div>
+    <div class="prod"><b>Imprimantes et consommables</b><small>Sur demande, selon le modèle souhaité</small><button class="add" data-p="Imprimante (modèle à préciser)">+ Ajouter au devis</button></div>
+    <div class="note">Liste indicative tirée des publications d'Office Plus, à compléter avec son catalogue.</div>
+   </div>
+  </div>
+
+  <div class="cat" id="c-mobilier">
+   <div class="visu"><img src="assets/img/mobilier1.jpg" alt="Open space lumineux avec bureaux et chaises" loading="lazy"><span class="lab">Mobilier</span></div>
+   <div class="liste">
+    <div class="prod"><b>Open space 4 personnes</b><small>Postes en vis-à-vis, cloisons</small><button class="add" data-p="Open space 4 personnes">+ Ajouter au devis</button></div>
+    <div class="prod"><b>Bureaux de direction</b><small>Collection bureau design et moderne</small><button class="add" data-p="Bureau de direction">+ Ajouter au devis</button></div>
+    <div class="prod"><b>Chaises et fauteuils</b><small>Opérateur, visiteur, direction</small><button class="add" data-p="Chaises / fauteuils de bureau">+ Ajouter au devis</button></div>
+    <div class="prod"><b>Armoires et rangements</b><small>Armoires, caissons, étagères</small><button class="add" data-p="Armoires et rangements">+ Ajouter au devis</button></div>
+    <div class="note">Livraison gratuite dans Abidjan et montage par l'équipe Office Plus.</div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="mob" id="mobilier">
+ <div class="wrap">
+  <div>
+   <div class="kicker" style="color:#FFB27A">Mobilier de bureau</div>
+   <h2 class="titre">Votre mobilier<br>livré et monté</h2>
+   <p>Commandez votre bureau, armoire ou chaise : Office Plus vous livre gratuitement partout dans Abidjan, et son équipe s'occupe du montage.</p>
+   <ul>
+    <li>Open spaces, bureaux de direction, chaises et armoires</li>
+    <li>Livraison gratuite dans Abidjan</li>
+    <li>Montage sur place par l'équipe Office Plus</li>
+   </ul>
+   <a class="btn btn-o" href="#devis" data-preset="mobilier">Demander un devis mobilier</a>
+  </div>
+  <div class="duo">
+   <img src="assets/img/mobilier3.jpg" alt="Bureaux en bois clair et chaises noires" loading="lazy">
+   <img src="assets/img/mobilier2.jpg" alt="Plateau de bureaux avec chaises ergonomiques" loading="lazy">
+  </div>
+ </div>
+</section>
+
+<section id="comment">
+ <div class="wrap">
+  <div class="kicker">Comment commander</div>
+  <h2 class="titre">Trois étapes, pas plus</h2>
+  <div class="etapes">
+   <div class="etape"><em>01</em><h3>Envoyez votre liste</h3><p>Par le formulaire ci-dessous ou sur WhatsApp : articles, quantités, et le modèle de vos imprimantes pour les cartouches.</p></div>
+   <div class="etape"><em>02</em><h3>Recevez le devis</h3><p>Office Plus vérifie le stock et vous renvoie un devis avec les prix, à valider par votre service.</p></div>
+   <div class="etape"><em>03</em><h3>Faites-vous livrer</h3><p>Livraison à votre bureau dans Abidjan. Commande passée avant 10 h : livrée l'après-midi, selon stock.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="devis" id="devis">
+ <div class="wrap">
+  <aside>
+   <div class="kicker">Demande de devis</div>
+   <h2 class="titre">Votre devis,<br>sans vous déplacer</h2>
+   <p class="sous">Trois étapes : ce dont vous avez besoin, votre structure, la livraison. Vous recevez une référence à rappeler à Office Plus.</p>
+   <div class="card">
+    <h3>Plus rapide sur WhatsApp ?</h3>
+    <p>Envoyez une photo de votre liste ou de la cartouche à remplacer.</p>
+    <a class="btn btn-w" href="https://wa.me/2250566666575?text=Bonjour%20Office%20Plus%2C%20voici%20ma%20liste%20pour%20un%20devis%20%3A%20" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Z"/></svg>+225 05 66 66 65 75</a>
+   </div>
+   <div class="coord" id="contact">
+    <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Boulevard de Marseille, Biétry, Abidjan</span></div>
+    <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span><a href="tel:+2252724314352">+225 27 24 31 43 52</a> · <a href="tel:+2250566666575">+225 05 66 66 65 75</a></span></div>
+    <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span><a href="mailto:officeplus.direction@gmail.com">officeplus.direction@gmail.com</a></span></div>
+    <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Lundi – vendredi 8 h 30 – 17 h · samedi 9 h – 12 h</span></div>
+   </div>
+  </aside>
+
+  <form id="f" novalidate>
+   <div class="steps"><span class="on"></span><span></span><span></span></div>
+
+   <fieldset class="on" data-s="1">
+    <legend>1 · Vos besoins</legend>
+    <p class="aide">Cochez les catégories, puis listez les articles et les quantités.</p>
+    <div class="chips">
+     <label class="chip"><input type="checkbox" name="cat" value="Fournitures"><span>Fournitures</span></label>
+     <label class="chip"><input type="checkbox" name="cat" value="Cartouches et toners"><span>Cartouches et toners</span></label>
+     <label class="chip"><input type="checkbox" name="cat" value="Matériel"><span>Matériel</span></label>
+     <label class="chip"><input type="checkbox" name="cat" value="Mobilier"><span>Mobilier</span></label>
+    </div>
+    <label>Articles et quantités</label>
+    <div class="lignes" id="lignes"></div>
+    <button type="button" class="plus" id="plus">+ Ajouter un article</button>
+    <div class="champ" id="ch-imp"><label for="imp">Modèle de vos imprimantes (pour les cartouches)</label><input id="imp" placeholder="Ex. : HP LaserJet M454, Canon iR C3226"></div>
+    <div class="err" id="err1">Ajoutez au moins un article.</div>
+    <div class="nav-f"><span></span><button type="button" class="btn btn-o" data-next>Continuer</button></div>
+   </fieldset>
+
+   <fieldset data-s="2">
+    <legend>2 · Votre structure</legend>
+    <p class="aide">Pour adresser le devis au bon nom.</p>
+    <div class="grid2">
+     <div class="champ"><label for="type">Vous êtes</label><select id="type"><option>Entreprise</option><option>École ou université</option><option>Administration</option><option>ONG ou association</option><option>Particulier</option></select></div>
+     <div class="champ" data-req><label for="org">Nom de la structure</label><input id="org" autocomplete="organization"><div class="err">Indiquez le nom de la structure.</div></div>
+     <div class="champ" data-req><label for="nom">Votre nom</label><input id="nom" autocomplete="name"><div class="err">Indiquez votre nom.</div></div>
+     <div class="champ"><label for="fonction">Fonction</label><input id="fonction" placeholder="Ex. : services généraux, achats"></div>
+     <div class="champ" data-req data-tel><label for="tel">Téléphone (WhatsApp de préférence)</label><input id="tel" inputmode="tel" placeholder="07 00 00 00 00" autocomplete="tel"><div class="err">Numéro ivoirien à 10 chiffres.</div></div>
+     <div class="champ" data-mail><label for="mail">E-mail</label><input id="mail" type="email" autocomplete="email"><div class="err">Adresse e-mail incomplète.</div></div>
+    </div>
+    <div class="nav-f"><button type="button" class="btn btn-l" data-prev>Retour</button><button type="button" class="btn btn-o" data-next>Continuer</button></div>
+   </fieldset>
+
+   <fieldset data-s="3">
+    <legend>3 · Livraison</legend>
+    <p class="aide">Où et quand livrer, et comment vous répondre.</p>
+    <div class="grid2">
+     <div class="champ" data-req><label for="commune">Commune de livraison</label><select id="commune"><option value="">Choisir…</option><option>Abobo</option><option>Adjamé</option><option>Attécoubé</option><option>Cocody</option><option>Koumassi</option><option>Marcory</option><option>Plateau</option><option>Port-Bouët</option><option>Treichville</option><option>Yopougon</option><option>Bingerville</option><option>Songon</option><option>Anyama</option><option>Hors Abidjan</option></select><div class="err">Choisissez la commune.</div></div>
+     <div class="champ"><label for="quand">Pour quand ?</label><select id="quand"><option>Dès que possible</option><option>Cette semaine</option><option>Ce mois-ci</option><option>Pas urgent, je compare</option></select></div>
+    </div>
+    <div class="champ"><label for="msg">Précisions (facultatif)</label><textarea id="msg" rows="3" placeholder="Bon de commande, adresse exacte, contraintes d'accès…"></textarea></div>
+    <label>Recevoir le devis par</label>
+    <div class="chips">
+     <label class="chip"><input type="radio" name="canal" value="WhatsApp" checked><span>WhatsApp</span></label>
+     <label class="chip"><input type="radio" name="canal" value="E-mail"><span>E-mail</span></label>
+     <label class="chip"><input type="radio" name="canal" value="Appel"><span>Appel</span></label>
+    </div>
+    <div class="recap" id="recap"></div>
+    <div class="nav-f"><button type="button" class="btn btn-l" data-prev>Retour</button><button type="submit" class="btn btn-v">Envoyer ma demande</button></div>
+   </fieldset>
+
+   <div class="merci" id="merci">
+    <div class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg></div>
+    <h3>Demande enregistrée</h3>
+    <p>Votre référence :</p>
+    <div class="ref" id="ref"></div>
+    <p>Office Plus vous recontacte avec le devis. Pour aller plus vite, envoyez aussi le récapitulatif sur WhatsApp.</p>
+    <div class="ctas"><a class="btn btn-w" id="waRecap" target="_blank" rel="noopener">Envoyer le récapitulatif sur WhatsApp</a><button type="button" class="btn btn-l" id="encore">Nouvelle demande</button></div>
+    <p style="font-size:12.5px;margin-top:16px">Maquette : la demande n'est transmise à personne.</p>
+   </div>
+  </form>
+ </div>
+</section>
+
+<section id="faq" style="padding-top:20px">
+ <div class="wrap">
+  <div class="kicker">Questions fréquentes</div>
+  <h2 class="titre">Avant de commander</h2>
+  <div class="faq">
+   <details><summary>Livrez-vous le jour même ?</summary><p>Oui, pour une commande passée le matin avant 10 h, livrée l'après-midi à Abidjan, selon la disponibilité des stocks.</p></details>
+   <details><summary>Le mobilier est-il monté ?</summary><p>Oui. Le mobilier est livré gratuitement partout dans Abidjan et l'équipe Office Plus s'occupe du montage.</p></details>
+   <details><summary>Je ne connais pas la référence de ma cartouche.</summary><p>Indiquez la marque et le modèle de l'imprimante, ou envoyez une photo de la cartouche sur WhatsApp : Office Plus retrouve la bonne référence.</p></details>
+   <details><summary>Comment régler ma commande ?</summary><p>Le mode de paiement est précisé sur le devis. Le paiement en ligne n'est pas proposé sur cette maquette.</p></details>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="wrap">
+  <div>
+   <img src="assets/img/logo-blanc.svg" alt="Office Plus" style="height:52px;width:auto;margin-bottom:14px">
+   <p>Fournitures, cartouches, matériel et mobilier de bureau à Abidjan.</p>
+   <div class="soc">
+    <a href="https://www.facebook.com/officeplus225/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H8v4h2v8h4v-8h3l1-4h-4V8.5c0-.3.2-.5.5-.5Z"/></svg></a>
+    <a href="https://wa.me/2250566666575" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.6-1.3a.4.4 0 0 0 0-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3Z"/></svg></a>
+   </div>
+  </div>
+  <div><h4>Catalogue</h4><p><a href="#catalogue">Fournitures</a><br><a href="#catalogue">Cartouches et toners</a><br><a href="#catalogue">Matériel</a><br><a href="#mobilier">Mobilier</a></p></div>
+  <div><h4>Contact</h4><p>Boulevard de Marseille, Biétry<br>Abidjan, Côte d'Ivoire<br><a href="tel:+2252724314352">+225 27 24 31 43 52</a><br><a href="tel:+2250566666575">+225 05 66 66 65 75</a></p></div>
+  <div><h4>Horaires</h4><p>Lundi – vendredi : 8 h 30 – 17 h<br>Samedi : 9 h – 12 h<br>Dimanche : fermé</p></div>
+  <div class="bas"><span>© 2026 Office Plus · RCCM CI-ABJ-2021-A · Mentions légales à ajouter</span><span>Photos d'illustration Pexels, à remplacer par les photos des produits Office Plus</span></div>
+ </div>
+</footer>
+
+<a class="wa" href="https://wa.me/2250566666575?text=Bonjour%20Office%20Plus%2C%20je%20souhaite%20un%20devis" target="_blank" rel="noopener" aria-label="Écrire à Office Plus sur WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.6-1.3a.4.4 0 0 0 0-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3Z"/></svg></a>
+<div class="barre"><a class="btn btn-o" href="#devis">Devis</a><a class="btn btn-w" href="https://wa.me/2250566666575" target="_blank" rel="noopener">WhatsApp</a></div>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+// onglets
+$$('.tab').forEach(t=>t.onclick=()=>{$$('.tab').forEach(x=>x.setAttribute('aria-selected',x===t));$$('.cat').forEach(c=>c.classList.toggle('on',c.id==='c-'+t.dataset.c));});
+// lignes d'articles
+const lignes=$('#lignes');
+function ligne(txt='',q=''){const d=document.createElement('div');d.className='ligne';d.innerHTML='<input placeholder="Article (ex. : ramette A4 80 g)" class="art"><input type="number" min="1" placeholder="Qté" class="qte"><button type="button" aria-label="Retirer">×</button>';d.querySelector('.art').value=txt;d.querySelector('.qte').value=q;d.querySelector('button').onclick=()=>{d.remove();if(!lignes.children.length)ligne();};lignes.appendChild(d);return d;}
+ligne();
+$('#plus').onclick=()=>ligne().querySelector('.art').focus();
+const catDe={fournitures:'Fournitures',cartouches:'Cartouches et toners',materiel:'Matériel',mobilier:'Mobilier'};
+$$('.add').forEach(b=>b.onclick=()=>{const p=b.dataset.p;const vide=[...lignes.querySelectorAll('.art')].find(i=>!i.value);(vide?vide.closest('.ligne'):ligne()).querySelector('.art').value=p;const cid=b.closest('.cat').id.slice(2);const cb=$(`input[name=cat][value="${catDe[cid]}"]`);if(cb)cb.checked=true;b.classList.add('ok');b.textContent='✓ Ajouté au devis';});
+$$('[data-preset=mobilier]').forEach(a=>a.addEventListener('click',()=>{$('input[name=cat][value="Mobilier"]').checked=true;}));
+// étapes
+let s=1;const fs=$$('fieldset'),bars=$$('.steps span');
+function go(n){s=n;fs.forEach(f=>f.classList.toggle('on',+f.dataset.s===n));bars.forEach((b,i)=>b.classList.toggle('on',i<n));if(n===3)recap();$('#f').scrollIntoView({behavior:'smooth',block:'start'});}
+function articles(){return [...lignes.children].map(l=>({a:l.querySelector('.art').value.trim(),q:l.querySelector('.qte').value.trim()})).filter(x=>x.a);}
+function valide(n){let ok=true;
+ if(n===1){ok=articles().length>0;$('#err1').style.display=ok?'none':'block';}
+ $$(`fieldset[data-s="${n}"] .champ`).forEach(c=>{const i=c.querySelector('input,select,textarea');let bad=false;const v=i.value.trim();
+  if(c.hasAttribute('data-req')&&!v)bad=true;
+  if(c.hasAttribute('data-tel')&&v&&!/^(\+?225)?\s?0[1579](\s?\d){8}$/.test(v.replace(/[.\-]/g,' ')))bad=true;
+  if(c.hasAttribute('data-mail')&&v&&!/^\S+@\S+\.\S+$/.test(v))bad=true;
+  c.classList.toggle('bad',bad);if(bad)ok=false;});
+ return ok;}
+$$('[data-next]').forEach(b=>b.onclick=()=>{if(valide(s))go(s+1);});
+$$('[data-prev]').forEach(b=>b.onclick=()=>go(s-1));
+function texte(){const a=articles();const cats=$$('input[name=cat]:checked').map(c=>c.value).join(', ')||'non précisé';
+ return `Demande de devis Office Plus\nStructure : ${$('#org').value} (${$('#type').value})\nContact : ${$('#nom').value}${$('#fonction').value?', '+$('#fonction').value:''} · ${$('#tel').value}${$('#mail').value?' · '+$('#mail').value:''}\nCatégories : ${cats}\nArticles :\n${a.map(x=>'- '+x.a+(x.q?' × '+x.q:'')).join('\n')}${$('#imp').value?'\nImprimantes : '+$('#imp').value:''}\nLivraison : ${$('#commune').value||'à préciser'} · ${$('#quand').value}\nRéponse par : ${$('input[name=canal]:checked').value}${$('#msg').value?'\nPrécisions : '+$('#msg').value:''}`;}
+function recap(){const a=articles();$('#recap').innerHTML='<b>Récapitulatif</b>'+a.map(x=>`${x.a}${x.q?' × '+x.q:''}`).join('<br>')+`<br><span style="color:var(--gris)">${$('#org').value} · ${$('#nom').value} · ${$('#tel').value}</span>`;}
+$('#f').onsubmit=e=>{e.preventDefault();if(!valide(3))return;const d=new Date();const ref='OP-'+String(d.getFullYear()).slice(2)+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0')+'-'+Math.floor(1000+Math.random()*9000);
+ $('#ref').textContent=ref;$('#waRecap').href='https://wa.me/2250566666575?text='+encodeURIComponent(texte()+'\nRéférence : '+ref);
+ fs.forEach(f=>f.classList.remove('on'));$('.steps').style.display='none';$('#merci').style.display='block';$('#f').scrollIntoView({behavior:'smooth',block:'start'});};
+$('#encore').onclick=()=>{$('#f').reset();lignes.innerHTML='';ligne();$$('.add').forEach(b=>{b.classList.remove('ok');b.textContent='+ Ajouter au devis';});$('#merci').style.display='none';$('.steps').style.display='flex';go(1);};
+</script>
+</body>
+</html>
