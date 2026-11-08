@@ -913,3 +913,6 @@ label.btn{cursor:pointer}
 .val-acts .btn{margin:0;flex:0 1 auto}
 .t-ph td{vertical-align:middle}
 .t-ph td:first-child{white-space:nowrap}
+.bo-top .t small{text-transform:none}
+.bo-top .t small::first-letter{text-transform:uppercase}
+@media (max-width:520px){.bo-top .t small{display:none}.bo-top .t{white-space:nowrap}}
