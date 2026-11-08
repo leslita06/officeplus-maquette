@@ -9,7 +9,7 @@
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const fcfa = n => Math.round(n).toLocaleString('fr-FR').replace(/\u202f|\u00a0/g, '\u202f') + '\u00a0F\u00a0CFA';
   const PHOTOS = new Set(['p/armoire', 'p/relieuse', 'p/openspace', 'p/enveloppes2', 'p/multiprise', 'p/classeurs', 'p/bureau-dir', 'p/salle-reunion']);
-  const img = k => 'assets/img/' + k + '.webp';
+  const img = k => /^(assets\/|data:)/.test(k) ? k : 'assets/img/' + k + '.webp';
   const imgTag = (k, alt, cls) => `<img src="${img(k)}" alt="${esc(alt || '')}" loading="lazy" decoding="async"${PHOTOS.has(k) ? ' class="ph' + (cls ? ' ' + cls : '') + '"' : (cls ? ` class="${cls}"` : '')}>`;
   const store = {
     get(k, d) { try { const v = localStorage.getItem('op3_' + k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
@@ -34,6 +34,7 @@
     sac: sv('<path d="M6 7h12l-1 13H7z"/><path d="M9 7a3 3 0 0 1 6 0"/>'), user: sv('<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>'),
     loupe: sv('<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>'), x: sv('<path d="M6 6l12 12M18 6 6 18"/>'), filtre: sv('<path d="M4 6h16M7 12h10M10 18h4"/>'),
     dl: sv('<path d="M12 3v12M7 10l5 5 5-5M5 21h14"/>'), recharger: sv('<path d="M3 12a9 9 0 0 1 15-6.7L21 8M21 3v5h-5M21 12a9 9 0 0 1-15 6.7L3 16M3 21v-5h5"/>'),
+    camera: sv('<path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.5"/>'),
     etoile: sv('<path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>'), bulle: sv('<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.4A8 8 0 1 1 21 12z"/>'),
     fb: '<svg class="i" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H8v4h2v8h4v-8h3l1-4h-4V8z"/></svg>',
     wa: '<svg class="i" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3z"/></svg>'
@@ -102,11 +103,11 @@
       <div><h4>Services</h4><ul>${OP.SERVICES.map(s => `<li><a href="#/services#${s.id}">${esc(s.titre)}</a></li>`).join('')}<li><a href="#/devis">Demande de devis</a></li></ul></div>
       <div><h4>Entreprises</h4><ul><li><a href="#/entreprises">Compte professionnel</a></li><li><a href="#/entreprises#paiement">Paiement à 30 jours</a></li><li><a href="#/entreprises#ao">Appels d'offres</a></li><li><a href="#/compte">Espace entreprise</a></li><li><a href="#/suivi">Suivre une commande</a></li></ul></div>
       <div><h4>Office Plus</h4><ul><li><a href="#/a-propos">Qui sommes-nous</a></li><li><a href="#/contact">Contact et accès</a></li><li><a href="#/faq">Questions fréquentes</a></li><li><a href="#/mentions">Mentions légales</a></li><li><a href="tel:+2252724314352">${esc(OP.TEL)}</a></li><li><a href="mailto:${OP.MAIL}">${esc(OP.MAIL)}</a></li></ul></div>
-    </div><div class="bas"><span>© 2026 Office Plus · Abidjan, Côte d'Ivoire</span><div><a href="#/mentions">Mentions légales</a><a href="#/mentions#donnees">Données personnelles</a><a href="#/faq">Aide</a><a href="#/admin">Back-office (démo)</a></div><span>Maquette proposée par Yelema, non publiée</span></div></div>`;
+    </div><div class="bas"><span>© 2026 Office Plus · Abidjan, Côte d'Ivoire</span><div><a href="#/mentions">Mentions légales</a><a href="#/mentions#donnees">Données personnelles</a><a href="#/faq">Aide</a><a href="#/admin">Back-office (démo)</a><a href="#/photos">Appli photos (démo)</a><a href="https://leslita06.github.io/officeplus-pilotage/">Tableaux de bord (démo)</a><a href="https://leslita06.github.io/officeplus-catalogue/">Catalogue feuilletable</a></div><span>Maquette proposée par Yelema, non publiée</span></div></div>`;
     $$('#pied a[href^="tel:"]').forEach(a => a.href = 'tel:+2252724314352');
-    $('#mbar').innerHTML = `<a href="#/" data-m="accueil">${ICO.maison}Accueil</a><a href="#/boutique" data-m="boutique">${ICO.grille}Boutique</a><button type="button" data-rch>${ICO.loupe}Chercher</button><a href="#/panier" data-m="panier">${ICO.sac}Panier<span class="n" style="display:none">0</span></a><a href="#/compte" data-m="compte">${ICO.user}Compte</a>`;
+    $('#mbar').innerHTML = `<a href="#/" data-m="accueil">${ICO.maison}Accueil</a><a href="#/boutique" data-m="boutique">${ICO.grille}Boutique</a><button type="button" data-rch>${ICO.loupe}Chercher</button><a href="#/devis" data-m="devis">${ICO.doc}Devis</a><a href="#/panier" data-m="panier">${ICO.sac}Panier<span class="n" style="display:none">0</span></a>`;
     $('#tiroir').innerHTML = `<div class="tt"><img src="assets/img/logo.svg" alt="Office Plus"><button class="ib" type="button" data-tiroir-x aria-label="Fermer">${ICO.x}</button></div>
-      <nav><a href="#/boutique">Boutique</a><a href="#/services">Services</a><a href="#/entreprises">Entreprises</a><a href="#/a-propos">Qui sommes-nous</a><a href="#/devis">Demande de devis</a><a href="#/contact">Contact</a><a href="#/faq">Questions fréquentes</a></nav>
+      <nav><a href="#/boutique">Boutique</a><a href="#/services">Services</a><a href="#/entreprises">Entreprises</a><a href="#/a-propos">Qui sommes-nous</a><a href="#/devis">Demander un devis</a><a href="#/compte">Espace entreprise</a><a href="#/suivi">Suivre une commande</a><a href="#/contact">Contact</a><a href="#/faq">Questions fréquentes</a></nav>
       <div class="fams">${fams.map(([k, f]) => `<a href="#/boutique/${k}"><img src="${img(f.img)}" alt="">${esc(f.court)}</a>`).join('')}</div>
       <a class="btn btn-w btn-b" href="${waLien('Bonjour Office Plus')}" target="_blank" rel="noopener">${ICO.wa}Écrire sur WhatsApp</a>`;
     $('#wa-f').href = waLien('Bonjour Office Plus, ');
@@ -275,7 +276,7 @@
     const imp = store.get('imprimante', '');
     app.innerHTML = `<div class="wrap"><div class="ariane"><a href="#/">Accueil</a><span>/</span><a href="#/boutique">Boutique</a><span>/</span><a href="#/boutique/${p.fam}">${esc(f.court)}</a><span>/</span>${esc(p.nom)}</div>
       <div class="fiche">
-        <div class="galerie"><div class="grande" style="--t:${f.teinte}">${imgTag(p.img, p.nom)}<span class="legende">Photo d'illustration</span></div></div>
+        <div class="galerie"><div class="grande" style="--t:${f.teinte}">${imgTag(p.img, p.nom)}<span class="legende">${p._ph ? `Photo envoyée par ${esc(p._ph.emp)}, validée par le gérant (démonstration)` : "Photo d'illustration"}</span></div></div>
         <div>
           <span class="mq">${esc(p.marque === 'Sans marque' ? f.nom : p.marque)}${p.ref ? ' · Réf. ' + esc(p.ref) : ''}</span>
           <h1>${esc(p.nom)}</h1>
@@ -285,7 +286,7 @@
           ${p.compat ? `<div class="compat"><h4>Compatible avec votre imprimante ?</h4><p>Choisissez votre modèle, le site vérifie pour vous.</p><label class="sr" for="cimp">Votre imprimante</label><select id="cimp"><option value="">Choisir mon imprimante</option>${imprimantes().map(m => `<option${m === imp ? ' selected' : ''}>${esc(m)}</option>`).join('')}</select><div class="rep" id="crep"></div></div>` : ''}
           <div class="achat"><div class="qte"><button type="button" data-q="-1" aria-label="Moins">−</button><input id="qte" type="number" min="1" max="99" value="1" aria-label="Quantité"><button type="button" data-q="1" aria-label="Plus">+</button></div>
             <button class="btn btn-n" type="button" id="b-add"${p.stock <= 0 ? ' disabled style="opacity:.4"' : ''}>${ICO.sac}Ajouter au panier</button></div>
-          <button class="btn btn-l btn-b" type="button" id="b-now"${p.stock <= 0 ? ' disabled style="opacity:.4"' : ''}>Commander maintenant</button>
+          <button class="btn btn-l btn-b" type="button" id="b-now"${p.stock <= 0 ? ' disabled style="opacity:.4"' : ''}>Commander</button>
           <div class="atouts-f"><div>${ICO.camion}<span>${avantDix() ? `Commandez dans les ${resteAvantDix()} : livré aujourd'hui` : 'Livré demain si commandé maintenant'}</span></div>
             <div>${p.fam === 'mobilier' ? ICO.outil + '<span>Livré et monté sans frais</span>' : ICO.doc + '<span>Facture normalisée FNE</span>'}</div>
             <div>${ICO.mobile}<span>Wave, Orange Money, MTN, Moov</span></div><div>${ICO.immeuble}<span>Paiement à 30 jours pour les pros</span></div></div>
@@ -330,7 +331,7 @@
     app.innerHTML = `<div class="wrap"><div class="ph-tete"><h1 class="h-l">Votre panier</h1></div><div class="duo">
       <div class="boite" id="lignes">${L.map(([id, q]) => { const p = BYID[id]; return `<div class="ligne" data-id="${id}"><a class="vi" href="#/produit/${id}" style="--t:${teinte(p)}">${imgTag(p.img, '')}</a><div><h4>${esc(p.nom)}</h4><span class="compte">${fcfa(p.prix)} / ${esc(p.unite)}</span><br><div class="qte"><button type="button" data-lq="-1" aria-label="Moins">−</button><input type="number" min="1" max="99" value="${q}" aria-label="Quantité"><button type="button" data-lq="1" aria-label="Plus">+</button></div></div><div class="d"><b class="prix" style="font-size:17px">${fcfa(p.prix * q)}</b><button class="sup" type="button" data-sup>Retirer</button></div></div>`; }).join('')}
         <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px"><a class="btn btn-g btn-s" href="#/boutique">Continuer mes achats</a><button class="btn btn-g btn-s" type="button" id="b-devis-p">${ICO.dl}Devis PDF de ce panier</button></div></div>
-      <div>${resume(`<a class="btn btn-n btn-b" href="#/commande" id="b-cmd" style="height:54px">Passer la commande ${ICO.fl}</a>`)}</div>
+      <div>${resume(`<a class="btn btn-n btn-b" href="#/commande" id="b-cmd" style="height:56px">Commander ${ICO.fl}</a>`)}</div>
     </div></div>`;
     $('#lignes').addEventListener('click', e => {
       const li = e.target.closest('.ligne'); if (!li) return; const id = li.dataset.id;
@@ -367,7 +368,7 @@
           <div class="champ"><label for="c-commune">Commune</label><select id="c-commune"><option value="">Choisir</option>${OP.COMMUNES.map(c => `<option>${c}</option>`).join('')}</select><span class="err">Choisissez une commune.</span></div>
           <div class="champ"><label for="c-adr">Adresse et repère</label><input id="c-adr" placeholder="Rue, immeuble, étage, repère"><span class="err">Indiquez l'adresse.</span></div>
           <div class="champ full"><label>Créneau</label><div class="choix cren">${cr.map(([v, j, h], i) => `<label><input type="radio" name="cren" value="${v}"${i === 0 ? ' checked' : ''}><span class="c"><b>${j}</b><small>${h}</small></span></label>`).join('')}</div></div></div></div>
-        <div class="boite"><h3><span class="num">3</span>Paiement</h3><div class="choix" id="pays">${Object.entries(PAYS).map(([k, v], i) => `<label><input type="radio" name="pay" value="${k}"${i === 0 ? ' checked' : ''}><span class="c"><b><span class="logo-p" style="background:${v.c};color:${v.tc || '#fff'}">${v.n.slice(0, 2).toUpperCase()}</span>${v.n}</b><small>${v.s}</small></span></label>`).join('')}</div>
+        <div class="boite"><h3><span class="fp-num">3</span>Paiement</h3><div class="choix" id="pays">${Object.entries(PAYS).map(([k, v], i) => `<label><input type="radio" name="pay" value="${k}"${i === 0 ? ' checked' : ''}><span class="c"><b><span class="logo-p" style="background:${v.c};color:${v.tc || '#fff'}">${v.n.slice(0, 2).toUpperCase()}</span>${v.n}</b><small>${v.s}</small></span></label>`).join('')}</div>
           <div class="champs" style="margin-top:14px"><div class="champ" id="ch-mm"><label for="c-mm">Numéro Mobile Money</label><input id="c-mm" type="tel" inputmode="tel" placeholder="07 00 00 00 00"><span class="err">Numéro à 10 chiffres.</span></div></div></div>
       </form>
       <div>${resume(`<button class="btn btn-v btn-b" type="button" id="payer" style="height:56px">Payer ${fcfa(total(L))}</button>`)}<div class="boite" style="margin-top:16px">${L.map(([id, q]) => `<div class="sb"><img src="${img(BYID[id].img)}" alt=""><span>${q} × ${esc(BYID[id].nom)}</span><b>${fcfa(BYID[id].prix * q)}</b></div>`).join('')}</div></div>
@@ -401,7 +402,7 @@
       <div class="mm-mt"><span>Montant</span><b>${fcfa(mt)}</b></div><div id="mm-corps">${etape1}<button class="btn btn-v btn-b" type="button" id="mm-go" style="margin-top:16px;height:52px">${v.pay === 'carte' ? 'Payer ' + fcfa(mt) : 'Envoyer la demande de paiement'}</button></div>
       <p class="fictif">Démonstration : aucun paiement réel n'est effectué.</p>`);
     $('#mm-go').onclick = () => {
-      $('#mm-corps').innerHTML = `<div class="attente"><div class="spin"></div><b style="font:700 18px var(--fh)">${v.pay === 'carte' ? 'Vérification 3-D Secure…' : 'Validez sur votre téléphone'}</b><p style="color:var(--mute);font-size:14px;margin-top:6px">${v.pay === 'carte' ? 'Votre banque confirme le paiement.' : 'Ouvrez ' + p.n + ' et confirmez le paiement de ' + fcfa(mt) + '.'}</p></div>`;
+      $('#mm-corps').innerHTML = `<div class="attente"><div class="fp-spin"></div><b style="font:700 18px var(--fh)">${v.pay === 'carte' ? 'Vérification 3-D Secure…' : 'Validez sur votre téléphone'}</b><p style="color:var(--mute);font-size:14px;margin-top:6px">${v.pay === 'carte' ? 'Votre banque confirme le paiement.' : 'Ouvrez ' + p.n + ' et confirmez le paiement de ' + fcfa(mt) + '.'}</p></div>`;
       setTimeout(() => {
         $('#mm-corps').innerHTML = `<div class="attente"><div class="coche"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></div><b style="font:700 20px var(--fh)">Paiement accepté</b><p style="color:var(--mute);font-size:14px;margin-top:6px">Redirection vers votre confirmation…</p></div>`;
         setTimeout(() => { fermerModale(); valider(v); }, 1100);
@@ -496,7 +497,7 @@
           <div class="offre n rv d1" id="paiement"><span class="tag o" style="align-self:flex-start">Le plus choisi</span><h3>Paiement à 30 jours</h3><p>Commandez sur bon de commande, réglez par virement à 30 jours fin de mois.</p><ul><li>${ICO.ok}Plafond défini avec votre direction</li><li>${ICO.ok}Relevé mensuel unique</li><li>${ICO.ok}Encours suivi en temps réel</li><li>${ICO.ok}Adapté aux circuits de validation publics</li></ul><a class="btn btn-v btn-b" href="#/devis?type=compte">Ouvrir un compte à 30 jours</a></div>
           <div class="offre rv d2"><span class="tag" style="align-self:flex-start">Sur mesure</span><h3>Contrat d'approvisionnement</h3><p>Vos fournitures livrées chaque mois, à prix fixés pour l'année.</p><ul><li>${ICO.ok}Liste récurrente définie ensemble</li><li>${ICO.ok}Livraison programmée</li><li>${ICO.ok}Une facture par mois</li><li>${ICO.ok}Revue trimestrielle des besoins</li></ul><a class="btn btn-l btn-b" href="#/devis?type=contrat">Demander un contrat</a></div>
         </div><p class="note-src rv">Formules proposées dans cette maquette ; conditions (plafonds, délais, tarifs) à fixer par Office Plus.</p></div></section>
-      <section class="sec-s"><div class="wrap"><div class="tete rv"><div><span class="eyebrow">L'espace entreprise</span><h2 class="h-l" style="margin-top:10px">Tout votre compte, en un écran.</h2></div><a class="btn btn-n" href="#/compte">Ouvrir la démo ${ICO.fl}</a></div>
+      <section class="sec-s"><div class="wrap"><div class="tete rv"><div><span class="eyebrow">L'espace entreprise</span><h2 class="h-l" style="margin-top:10px">Tout votre compte, en un écran.</h2></div><a class="btn btn-n" href="#/compte">Ouvrir l'espace entreprise ${ICO.fl}</a></div>
         <div class="valeurs"><div class="valeur rv"><span class="ic">${ICO.user}</span><h3>Plusieurs utilisateurs</h3><p>L'assistante commande, le directeur administratif valide au-delà du plafond.</p></div>
         <div class="valeur rv d1"><span class="ic">${ICO.cloche}</span><h3>Alertes cartouches</h3><p>Le site estime quand vos toners seront vides et propose de recommander à temps.</p></div>
         <div class="valeur rv d2"><span class="ic">${ICO.doc}</span><h3>Factures FNE</h3><p>Chaque facture normalisée est téléchargeable, prête pour la comptabilité.</p></div></div></div></section>
@@ -636,6 +637,118 @@
     const bi = $('#b-inv'); if (bi) bi.onclick = () => toast('Invitation prête (démonstration)');
   }
 
+
+  /* ---------- photos produits envoyées par les employés (démo) ---------- */
+  const ENVOIS_DEF = [
+    { id: 'PH-03', prod: 'imprimante-mf', emp: 'Mariam T.', poste: 'Vendeuse, boutique de Biétry', quand: "Aujourd'hui, 09:12", avant: 'assets/img/ph/imprimante-c-avant.webp', apres: 'assets/img/ph/imprimante-c-apres.webp', statut: 'attente' },
+    { id: 'PH-02', prod: 'calculatrice', emp: 'Ismaël D.', poste: 'Magasinier', quand: "Aujourd'hui, 08:47", avant: 'assets/img/ph/calculatrice-c-avant.webp', apres: 'assets/img/ph/calculatrice-c-apres.webp', statut: 'attente' },
+    { id: 'PH-01', prod: 'lampe', emp: 'Prisca A.', poste: 'Vendeuse, boutique de Biétry', quand: 'Hier, 17:30', avant: 'assets/img/ph/lampe-avant.webp', apres: 'assets/img/ph/lampe-apres.webp', statut: 'validee', par: 'Le gérant', le: 'Hier, 18:05' }
+  ];
+  const EXEMPLES = [
+    { k: 'imprimante-c', prod: 'imprimante-mf', t: 'Imprimante en rayon' },
+    { k: 'calculatrice-c', prod: 'calculatrice', t: 'Calculatrice au comptoir' },
+    { k: 'lampe', prod: 'lampe', t: 'Lampe en vitrine' }
+  ];
+  const ST_PH = { attente: ['En attente du gérant', 'st-att'], validee: ['Validée, en ligne', 'st-ok'], refusee: ['Refusée', 'st-ref'] };
+  const envois = () => store.get('envois', null) || ENVOIS_DEF.map(e => Object.assign({}, e));
+  function appliquerPhotos() {
+    const ok = {}; envois().slice().reverse().forEach(e => { if (e.statut === 'validee' && BYID[e.prod]) ok[e.prod] = e; });
+    P.forEach(p => { if (p._img0 === undefined) p._img0 = p.img; p.img = ok[p.id] ? ok[p.id].apres : p._img0; p._ph = ok[p.id] || null; });
+  }
+  appliquerPhotos();
+  const pill = s => `<span class="statut ${ST_PH[s][1]}">${ST_PH[s][0]}</span>`;
+  function retoucher(src) {
+    return new Promise(res => {
+      const im = new Image(); im.onload = () => {
+        const S = 800, c = document.createElement('canvas'); c.width = c.height = S; const x = c.getContext('2d');
+        x.fillStyle = '#fff'; x.fillRect(0, 0, S, S);
+        const cote = Math.min(im.width, im.height) * 0.9, sx = (im.width - cote) / 2, sy = (im.height - cote) / 2;
+        x.filter = 'brightness(1.14) contrast(1.08) saturate(1.06)';
+        x.drawImage(im, sx, sy, cote, cote, 40, 40, S - 80, S - 80); x.filter = 'none';
+        res(c.toDataURL('image/jpeg', 0.82));
+      }; im.src = src;
+    });
+  }
+  function reduire(file) {
+    return new Promise(res => { const r = new FileReader(); r.onload = () => { const im = new Image(); im.onload = () => { const m = 900, k = Math.min(1, m / Math.max(im.width, im.height)); const c = document.createElement('canvas'); c.width = im.width * k; c.height = im.height * k; c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); res(c.toDataURL('image/jpeg', 0.8)); }; im.src = r.result; }; r.readAsDataURL(file); });
+  }
+
+  function pPhotos(onglet) {
+    document.body.classList.add('bo', 'bo-ph');
+    const V = { photo: null, exemple: null, prod: null, q: '', etape: 'photo', dernier: null, onglet: onglet === 'historique' ? 'historique' : 'nouvelle' };
+    const ligne = e => { const p = BYID[e.prod]; return `<div class="hist"><div class="hist-im"><img src="${e.avant}" alt="Photo envoyée"><img src="${e.apres}" alt="Photo retouchée"></div><div class="hist-tx"><b>${esc(p ? p.nom : e.prod)}</b><small>Envoyée par ${esc(e.emp)} · ${esc(e.quand)}</small>${pill(e.statut)}${e.par ? `<small>${e.statut === 'validee' ? 'Validée' : 'Refusée'} par ${esc(e.par)} · ${esc(e.le)}${e.motif ? ' · ' + esc(e.motif) : ''}</small>` : ''}</div></div>`; };
+    const rend = () => {
+      const E = envois(), att = E.filter(e => e.statut === 'attente').length;
+      const res = V.q ? cherche(V.q).slice(0, 6) : (V.prod ? [BYID[V.prod]] : P.filter(p => ['imprimante-mf', 'calculatrice', 'lampe', 'agrafeuse', 'fauteuil-directeur', 'cexv65-noir'].includes(p.id)));
+      let corps;
+      if (V.onglet === 'historique') corps = `<div class="ph-bloc"><h2>Qui a envoyé quoi</h2><p class="ph-aide">Toutes les photos envoyées par l'équipe, avec la décision du gérant.</p>${E.map(ligne).join('')}</div>`;
+      else if (V.etape === 'envoi') corps = `<div class="ph-bloc ph-trait"><div class="fp-spin"></div><h2>Retouche en cours</h2><p class="ph-aide">Fond propre, cadrage, lumière…</p></div>`;
+      else if (V.etape === 'fini') { const e = V.dernier; corps = `<div class="ph-bloc"><span class="statut st-att" style="margin-bottom:10px">Envoyée au gérant</span><h2>Photo retouchée, en attente de validation</h2><p class="ph-aide">${esc(BYID[e.prod].nom)}. Elle remplacera la photo de la fiche dès que le gérant l'aura validée.</p>
+          <div class="ba"><figure><img src="${e.avant}" alt="Avant"><figcaption>Avant</figcaption></figure><figure><img src="${e.apres}" alt="Après retouche"><figcaption>Après retouche</figcaption></figure></div>
+          ${e.ex ? '' : `<p class="ph-note">Démonstration : sur votre propre photo, seuls le cadrage et la lumière sont simulés. Le détourage sur fond blanc se fait dans la version réelle.</p>`}
+          <div class="ph-acts"><button class="btn btn-n btn-b btn-xl" type="button" id="ph-autre">Envoyer une autre photo</button><button class="btn btn-l btn-b btn-xl" type="button" data-onglet="historique">Voir l'historique</button></div></div>`; }
+      else corps = `
+        <div class="ph-bloc"><div class="fp-etape"><span class="fp-num${V.photo ? ' ok' : ''}">${V.photo ? ICO.ok : '1'}</span><h2>Prendre la photo</h2></div>
+          ${V.photo ? `<div class="apercu"><img src="${V.photo}" alt="Photo prise"><button class="btn btn-l btn-s" type="button" id="ph-refaire">${ICO.recharger}Reprendre</button></div>` :
+          `<label class="btn btn-n btn-b btn-xl" for="ph-file">${ICO.camera}Prendre une photo</label><input id="ph-file" type="file" accept="image/*" capture="environment" class="sr">
+           <p class="ph-aide" style="margin-top:14px">Pas de produit sous la main ? Essayez avec un exemple :</p>
+           <div class="ex">${EXEMPLES.map((x, i) => `<button type="button" data-ex="${i}"><img src="assets/img/ph/${x.k}-avant.webp" alt=""><span>${esc(x.t)}</span></button>`).join('')}</div>
+           <p class="ph-note">Exemples d'illustration (photos libres de droits), pas des photos d'Office Plus.</p>`}</div>
+        <div class="ph-bloc${V.photo ? '' : ' off'}"><div class="fp-etape"><span class="fp-num${V.prod ? ' ok' : ''}">${V.prod ? ICO.ok : '2'}</span><h2>Choisir l'article</h2></div>
+          <div class="rch-ph">${ICO.loupe}<label class="sr" for="ph-q">Chercher l'article</label><input id="ph-q" type="search" placeholder="Nom ou référence de l'article" value="${esc(V.q)}" autocomplete="off"></div>
+          <div class="fp-choix">${res.map(p => `<button type="button" class="${V.prod === p.id ? 'on' : ''}" data-prod="${p.id}"><img src="${img(p.img)}" alt=""><span><b>${esc(p.nom)}</b><small>Photo actuelle de la fiche</small></span>${V.prod === p.id ? `<i>${ICO.ok}</i>` : ''}</button>`).join('') || '<p class="ph-aide">Aucun article trouvé.</p>'}</div></div>
+        <div class="ph-bloc${V.photo && V.prod ? '' : ' off'}"><div class="fp-etape"><span class="fp-num">3</span><h2>Envoyer</h2></div>
+          <p class="ph-aide">La photo est retouchée automatiquement, puis le gérant la valide avant qu'elle n'apparaisse sur le site.</p>
+          <button class="btn btn-v btn-b btn-xl" type="button" id="ph-go"${V.photo && V.prod ? '' : ' disabled'}>Envoyer la photo</button></div>`;
+      app.innerHTML = `<div class="bo-top"><div class="wrap"><img src="assets/img/logo-blanc.svg" alt="Office Plus"><div class="t">Photos produits<small>appli des employés</small></div><div class="r"><a class="btn btn-l btn-s" href="#/admin">${ICO.grille}<span>Back-office</span></a><a class="btn btn-l btn-s" href="#/">${ICO.maison}<span>Voir le site</span></a></div></div></div>
+      <div class="bo-fict">Démonstration : employés et envois fictifs, photos d'illustration libres de droits. Rien n'est envoyé.</div>
+      <div class="ph-page"><div class="ph-intro"><span class="eyebrow">Back-office · appli employé</span><h1 class="h-l">Les photos produits, prises en boutique par l'équipe.</h1>
+        <ol class="ph-pas"><li><span><b>L'employé photographie</b> l'article avec son téléphone et choisit la fiche.</span></li><li><span><b>La photo est retouchée</b> : fond blanc, cadrage, lumière.</span></li><li><span><b>Le gérant valide</b> dans le back-office : la photo remplace celle de la fiche.</span></li></ol>
+        <div class="ph-liens"><a class="btn btn-n" href="#/admin#photos">Voir la validation du gérant</a><a class="lien" href="#/photos/historique">Historique des envois ${ICO.fl}</a></div></div>
+      <div class="tel"><div class="tel-in"><div class="tel-tete"><b>Ajouter des photos produits</b><small>Mariam T. · vendeuse</small></div>
+        <div class="onglets" role="tablist"><button type="button" role="tab" data-onglet="nouvelle" class="${V.onglet === 'nouvelle' ? 'on' : ''}">Nouvelle photo</button><button type="button" role="tab" data-onglet="historique" class="${V.onglet === 'historique' ? 'on' : ''}">Historique${att ? ` <em>${att}</em>` : ''}</button></div>
+        <div class="tel-corps">${corps}</div></div></div></div>`;
+      const f = $('#ph-file'); if (f) f.onchange = async () => { if (!f.files[0]) return; V.photo = await reduire(f.files[0]); V.exemple = null; rend(); };
+      $$('[data-ex]').forEach(b => b.onclick = () => { const x = EXEMPLES[+b.dataset.ex]; V.exemple = x; V.photo = `assets/img/ph/${x.k}-avant.webp`; V.prod = x.prod; V.q = ''; rend(); });
+      const rf = $('#ph-refaire'); if (rf) rf.onclick = () => { V.photo = null; V.exemple = null; V.prod = null; rend(); };
+      const q = $('#ph-q'); if (q) q.oninput = () => { V.q = q.value; const pos = q.selectionStart; rend(); const q2 = $('#ph-q'); q2.focus(); q2.setSelectionRange(pos, pos); };
+      $$('[data-prod]').forEach(b => b.onclick = () => { V.prod = b.dataset.prod; V.q = ''; rend(); });
+      $$('[data-onglet]').forEach(b => b.onclick = () => { V.onglet = b.dataset.onglet; if (V.etape === 'fini' && V.onglet === 'nouvelle') V.etape = 'photo'; rend(); });
+      const go = $('#ph-go'); if (go) go.onclick = async () => {
+        V.etape = 'envoi'; rend();
+        const apres = V.exemple ? `assets/img/ph/${V.exemple.k}-apres.webp` : await retoucher(V.photo);
+        await new Promise(r => setTimeout(r, 1500));
+        const d = new Date(), E = envois();
+        const e = { id: 'PH-' + String(E.length + 1).padStart(2, '0'), prod: V.prod, emp: 'Mariam T.', poste: 'Vendeuse, boutique de Biétry', quand: "Aujourd'hui, " + String(d.getUTCHours()).padStart(2, '0') + ':' + String(d.getUTCMinutes()).padStart(2, '0'), avant: V.photo, apres, statut: 'attente', ex: !!V.exemple, nouveau: 1 };
+        E.unshift(e); store.set('envois', E); V.dernier = e; V.etape = 'fini'; rend();
+      };
+      const au = $('#ph-autre'); if (au) au.onclick = () => { Object.assign(V, { photo: null, exemple: null, prod: null, q: '', etape: 'photo' }); rend(); };
+    };
+    rend();
+  }
+
+  function blocPhotosAdmin(rendAdmin) {
+    const E = envois(), att = E.filter(e => e.statut === 'attente');
+    return `<div class="carte-bo" id="photos"><h3>Photos produits à valider <small>envoyées par l'équipe depuis la boutique</small></h3>
+      ${att.length ? att.map(e => { const p = BYID[e.prod]; return `<div class="val-ph${e.nouveau ? ' flash' : ''}"><div class="ba ba-s"><figure><img src="${e.avant}" alt="Photo envoyée"><figcaption>Envoyée</figcaption></figure><figure><img src="${e.apres}" alt="Photo retouchée"><figcaption>Retouchée</figcaption></figure></div>
+        <div class="val-tx"><b>${esc(p.nom)}</b><small>${esc(e.emp)} · ${esc(e.poste)} · ${esc(e.quand)}</small><div class="val-acts"><button class="btn btn-v" type="button" data-phok="${e.id}">${ICO.ok}Valider et remplacer la photo</button><button class="btn btn-l" type="button" data-phko="${e.id}">Refuser</button></div></div></div>`; }).join('') : `<p class="compte">Aucune photo en attente. Les prochaines arriveront ici.</p>`}
+      <div class="ph-bas"><a class="btn btn-n btn-s" href="#/photos">${ICO.camera}Ouvrir l'appli employé</a><a class="lien" href="#/photos/historique">Historique complet ${ICO.fl}</a></div>
+      <h4 class="h4-hist">Historique des envois</h4><div class="tbl-wrap"><table class="t t-ph"><thead><tr><th>Envoi</th><th>Article</th><th>Employé</th><th>Décision</th></tr></thead><tbody>${E.map(e => `<tr><td><img src="${e.apres}" alt=""><small class="compte">${esc(e.quand)}</small></td><td><b>${esc((BYID[e.prod] || {}).nom || e.prod)}</b></td><td>${esc(e.emp)}</td><td>${pill(e.statut)}${e.par ? `<br><small class="compte">${esc(e.par)} · ${esc(e.le)}</small>` : ''}</td></tr>`).join('')}</tbody></table></div></div>`;
+  }
+  function brancherPhotosAdmin(rendAdmin) {
+    const maj = (id, statut) => {
+      const E = envois(), e = E.find(x => x.id === id); if (!e) return;
+      const d = new Date(); e.statut = statut; e.nouveau = 0; e.par = 'Le gérant'; e.le = "Aujourd'hui, " + String(d.getUTCHours()).padStart(2, '0') + ':' + String(d.getUTCMinutes()).padStart(2, '0');
+      if (statut === 'refusee') e.motif = 'photo à reprendre';
+      store.set('envois', E); appliquerPhotos();
+      const p = BYID[e.prod];
+      toast(statut === 'validee' ? `Photo de <b>${esc(p.nom)}</b> remplacée sur le site <a href="#/produit/${p.id}">Voir la fiche</a>` : `Photo refusée, ${esc(e.emp)} est prévenu(e)`, statut === 'validee' ? null : null);
+      rendAdmin();
+    };
+    $$('[data-phok]').forEach(b => b.onclick = () => maj(b.dataset.phok, 'validee'));
+    $$('[data-phko]').forEach(b => b.onclick = () => maj(b.dataset.phko, 'refusee'));
+  }
+
   /* ---------- page : back-office ---------- */
   const STATUTS = { recue: 'Reçue', preparee: 'Préparée', livraison: 'En livraison', livree: 'Livrée' };
   const SUIV = { recue: 'preparee', preparee: 'livraison', livraison: 'livree' };
@@ -648,14 +761,14 @@
     document.body.classList.add('bo');
     const rend = () => {
       const aT = ADMIN.filter(c => c.statut === 'recue').length;
-      app.innerHTML = `<div class="bo-top"><div class="wrap"><img src="assets/img/logo-blanc.svg" alt="Office Plus"><div class="t">Back-office<small>${new Date().toLocaleDateString('fr-FR', { weekday: 'long', day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'UTC' })} · tableau du jour</small></div><div class="r"><a class="btn btn-l btn-s" href="#/">${ICO.maison}<span>Voir le site</span></a></div></div></div>
+      app.innerHTML = `<div class="bo-top"><div class="wrap"><img src="assets/img/logo-blanc.svg" alt="Office Plus"><div class="t">Back-office<small>${new Date().toLocaleDateString('fr-FR', { weekday: 'long', day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'UTC' })} · tableau du jour</small></div><div class="r"><a class="btn btn-l btn-s" href="#/photos">${ICO.camera}<span>Photos produits</span></a><a class="btn btn-l btn-s" href="https://leslita06.github.io/officeplus-pilotage/">${ICO.liste}<span>Tableaux de bord</span></a><a class="btn btn-l btn-s" href="#/">${ICO.maison}<span>Voir le site</span></a></div></div></div>
       <div class="bo-fict">Données fictives de démonstration : commandes, clients, chiffre d'affaires et stocks sont inventés pour montrer l'outil.</div>
-      <div class="wrap" style="padding-top:22px"><div class="kpis bo4"><div class="kpi n"><small>Chiffre d'affaires du jour</small><b>${fcfa(ca)}</b><span>${ADMIN.length} commandes</span></div><div class="kpi"><small>À valider</small><b>${aT}</b><span>à préparer avant 10 h</span></div><div class="kpi"><small>Demandes de devis</small><b>${OP.ADMIN_DEVIS.length + store.get('devis', []).length}</b><span>à chiffrer</span></div><div class="kpi"><small>Stocks bas</small><b>${bas.length}</b><span>à réapprovisionner</span></div></div>
+      <div class="wrap" style="padding-top:22px"><div class="kpis bo4"><div class="kpi n"><small>Chiffre d'affaires du jour</small><b>${fcfa(ca)}</b><span>${ADMIN.length} commandes</span></div><div class="kpi"><small>À valider</small><b>${aT}</b><span>à préparer avant 10 h</span></div><div class="kpi"><small>Demandes de devis</small><b>${OP.ADMIN_DEVIS.length + store.get('devis', []).length}</b><span>à chiffrer</span></div><div class="kpi"><small>Stocks bas</small><b>${bas.length}</b><span>à réapprovisionner</span></div><a class="kpi kpi-l" href="#/admin#photos"><small>Photos produits</small><b>${envois().filter(e => e.statut === 'attente').length}</b><span>à valider ${ICO.fl}</span></a></div>
       <div class="bo-g"><div><div class="carte-bo"><h3>Commandes du jour <small>Valider = prévenir le client sur WhatsApp</small></h3><div class="tbl-wrap"><table class="t resp" id="tcmd"><thead><tr><th>Heure</th><th>Client</th><th>Articles</th><th>Montant</th><th>Paiement</th><th>Statut et action</th></tr></thead><tbody>
         ${ADMIN.map((c, i) => `<tr class="${c.nouveau ? 'flash' : ''}"><td>${esc(c.heure)}</td><td class="full"><b>${esc(c.client)}</b>${c.site ? ' <span class="statut st-new">Nouvelle · site</span>' : ''}<br><small class="compte">${esc(c.tel)} · ${esc(c.ref)}</small></td><td class="hide-m art">${c.lignes.map(([id, q]) => `<span>${q} × ${esc(BYID[id].nom)}</span>`).join('')}</td><td><b>${fcfa(total(c.lignes))}</b></td><td class="hide-m">${esc(c.paiement)}</td><td class="full"><div class="act-c"><span class="statut st-${c.statut}">${STATUTS[c.statut]}</span>${c.statut === 'livree' ? '' : `<button class="btn btn-v btn-s" type="button" data-val="${i}">${ICO.wa}${c.statut === 'recue' ? 'Valider et prévenir' : 'Étape suivante'}</button>`}</div></td></tr>`).join('')}
       </tbody></table></div></div>
       <div class="carte-bo"><h3>Chiffre d'affaires, 7 derniers jours <small>F CFA</small></h3><div class="barres">${OP.CA7.map(([j, v]) => `<div><i style="height:${Math.round(v / max * 100)}%"></i>${j}</div>`).join('')}<div class="auj"><i style="height:${Math.round(ca / max * 100)}%"></i>Auj.</div></div></div></div>
-      <div><div class="carte-bo"><h3>Stocks bas <small>seuil : 3</small></h3>${bas.map(p => `<div class="sb"><img src="${img(p.img)}" alt=""><span>${esc(p.nom)}</span><span class="q${p.stock <= 0 ? ' z' : ''}">${p.stock <= 0 ? 'Rupture' : p.stock + ' restant' + (p.stock > 1 ? 's' : '')}</span></div>`).join('')}<button class="btn btn-l btn-s btn-b" type="button" id="reappro" style="margin-top:12px">Préparer le bon de réapprovisionnement</button></div>
+      <div>${blocPhotosAdmin()}<div class="carte-bo"><h3>Stocks bas <small>seuil : 3</small></h3>${bas.map(p => `<div class="sb"><img src="${img(p.img)}" alt=""><span>${esc(p.nom)}</span><span class="q${p.stock <= 0 ? ' z' : ''}">${p.stock <= 0 ? 'Rupture' : p.stock + ' restant' + (p.stock > 1 ? 's' : '')}</span></div>`).join('')}<button class="btn btn-l btn-s btn-b" type="button" id="reappro" style="margin-top:12px">Préparer le bon de réapprovisionnement</button></div>
         <div class="carte-bo"><h3>Demandes de devis</h3>${store.get('devis', []).map(d => ({ ref: d.ref, client: d.client, objet: d.objet, depuis: 'site' })).concat(OP.ADMIN_DEVIS).map(d => `<div class="sb"><span style="flex:none">${ICO.doc}</span><span><b style="font-weight:600">${esc(d.client)}</b><br><small class="compte">${esc(d.objet)} · ${esc(d.depuis)}</small></span><button class="btn btn-g btn-s" type="button" data-chif>Chiffrer</button></div>`).join('')}</div></div></div></div>`;
       $$('[data-val]').forEach(b => b.onclick = () => {
         const c = ADMIN[+b.dataset.val], prec = c.statut; c.statut = SUIV[c.statut]; c.nouveau = 0;
@@ -665,6 +778,7 @@
         modale(`<div class="mm-tete"><span class="logo-p" style="background:#25D366">${ICO.wa}</span><span><b>Message WhatsApp prêt</b><small>à ${esc(c.client)} · ${esc(c.tel)}</small></span></div><div class="wa-carte">Bonjour, ici Office Plus. Votre commande ${esc(c.ref)} ${msg}</div><p class="compte">Statut : ${STATUTS[prec]} → <b>${STATUTS[c.statut]}</b></p><button class="btn btn-n btn-b" type="button" data-fermer style="margin-top:16px">OK</button><p class="fictif">Démonstration : aucun message n'est envoyé.</p>`);
         rend();
       });
+      brancherPhotosAdmin(rend);
       $('#reappro').onclick = () => toast('Bon de réapprovisionnement préparé (' + bas.length + ' articles)');
       $$('[data-chif]').forEach(b => b.onclick = () => { b.outerHTML = '<span class="statut st-ok">Chiffré</span>'; });
     };
@@ -674,7 +788,7 @@
   function p404() { app.innerHTML = `<div class="wrap"><div class="conf"><h1>Page introuvable</h1><p class="lead" style="margin:0 auto 24px">Le lien est peut-être incomplet.</p><a class="btn btn-n" href="#/">Retour à l'accueil</a></div></div>`; }
 
   /* ---------- routeur ---------- */
-  const TITRES = { '': 'Fournitures, cartouches et mobilier de bureau à Abidjan', boutique: 'Boutique', produit: '', panier: 'Panier', commande: 'Commande', confirmation: 'Commande confirmée', suivi: 'Suivi de commande', services: 'Services', entreprises: 'Entreprises et administrations', 'a-propos': 'Qui sommes-nous', devis: 'Demande de devis', contact: 'Contact', faq: 'Questions fréquentes', mentions: 'Mentions légales', compte: 'Espace entreprise', admin: 'Back-office' };
+  const TITRES = { '': 'Fournitures, cartouches et mobilier de bureau à Abidjan', boutique: 'Boutique', produit: '', panier: 'Panier', commande: 'Commande', confirmation: 'Commande confirmée', suivi: 'Suivi de commande', services: 'Services', entreprises: 'Entreprises et administrations', 'a-propos': 'Qui sommes-nous', devis: 'Demande de devis', contact: 'Contact', faq: 'Questions fréquentes', mentions: 'Mentions légales', compte: 'Espace entreprise', admin: 'Back-office', photos: 'Photos produits (appli employé)' };
   let ancre = null;
   function route() {
     let h = location.hash.replace(/^#\/?/, '');
@@ -684,8 +798,8 @@
     else if (a && a.includes('#')) { ancre = a.split('#')[1]; a = a.split('#')[0]; }
     else ancre = null;
     base = base || '';
-    document.body.classList.remove('bo'); fermerRecherche(); fermerModale(); $('#tiroir').classList.remove('on'); $('#mega').classList.remove('on'); document.body.style.overflow = '';
-    const R = { '': pAccueil, boutique: () => pBoutique(a, params.get('q')), produit: () => pProduit(a), panier: pPanier, commande: pCommande, confirmation: () => pConfirmation(a), suivi: () => pSuivi(a ? decodeURIComponent(a) : ''), services: pServices, entreprises: pEntreprises, 'a-propos': pAPropos, devis: () => pDevis(params), contact: pContact, faq: pFaq, mentions: pMentions, compte: () => pCompte(a), admin: pAdmin };
+    document.body.classList.remove('bo', 'bo-ph'); fermerRecherche(); fermerModale(); $('#tiroir').classList.remove('on'); $('#mega').classList.remove('on'); document.body.style.overflow = '';
+    const R = { '': pAccueil, boutique: () => pBoutique(a, params.get('q')), produit: () => pProduit(a), panier: pPanier, commande: pCommande, confirmation: () => pConfirmation(a), suivi: () => pSuivi(a ? decodeURIComponent(a) : ''), services: pServices, entreprises: pEntreprises, 'a-propos': pAPropos, devis: () => pDevis(params), contact: pContact, faq: pFaq, mentions: pMentions, compte: () => pCompte(a), admin: pAdmin, photos: () => pPhotos(a) };
     (R[base] || p404)();
     const p = base === 'produit' && BYID[a];
     document.title = 'Office Plus · ' + (p ? p.nom : (base === 'boutique' && OP.FAM[a] ? OP.FAM[a].nom : (TITRES[base] != null ? TITRES[base] : 'Page introuvable')));
@@ -726,6 +840,16 @@
   document.addEventListener('keydown', e => { if (e.key === 'Escape') { fermerModale(); fermerRecherche(); $('#mega').classList.remove('on'); } if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); ouvrirRecherche(''); } });
   document.addEventListener('submit', e => { if (e.target.id === 'nl') { e.preventDefault(); toast('Inscription enregistrée (démonstration)'); e.target.reset(); } });
   window.addEventListener('scroll', () => $('#top').classList.toggle('sc', scrollY > 8), { passive: true });
+  /* liens du catalogue feuilletable (anciens formats ?produit=…#catalogue, #catalogue, #devis) */
+  (function () {
+    const A = {"ramette-a4-paperline-80g": "paperline-a4", "stylos-cristal-bleus": "cristal-bleu", "blocs-notes-a5": "blocs-a5", "porte-documents-80-vues": "porte-docs-80", "pochettes-perforees": "pochettes", "surligneurs": "surligneurs", "classeurs-chemises": "classeur-levier", "boites-archives": "cartons-archives", "manifolds-carnets-recus": "manifold", "rouleaux-thermiques": "bobinettes", "toner-canon-c-exv65-noir": "cexv65-noir", "toner-canon-c-exv65-bleu": "cexv65-cyan", "toner-canon-c-exv65-rose": "cexv65-magenta", "toner-canon-c-exv65-jaune": "cexv65-jaune", "toner-205a-noir": "t205a-noir", "toner-205a-jaune": "t205a-jaune", "toner-205a-cyan": "t205a-cyan", "toner-205a-magenta": "t205a-magenta", "cartouches-jet-encre": "hp301-noir", "compteuse-billets": "compteuse", "organiseur-bureau": "organiseur", "agrafeuse": "agrafeuse", "calculatrice": "calculatrice", "imprimante": "imprimante-mf", "open-space-4-personnes": "open-space-4", "bureau-direction": "bureau-direction", "fauteuil-direction": "fauteuil-directeur", "chaise-visiteur": "chaise-visiteur", "armoire-rangement": "armoire-bureau"}, C = {"fournitures": "papier", "cartouches": "cartouches", "materiel": "bureau", "mobilier": "mobilier"};
+    const q = new URLSearchParams(location.search), h = location.hash;
+    let cible = null;
+    if (q.get('produit')) cible = BYID[A[q.get('produit')]] ? '#/produit/' + A[q.get('produit')] : (C[q.get('cat')] ? '#/boutique/' + C[q.get('cat')] : '#/boutique');
+    else if (h === '#catalogue') cible = '#/boutique';
+    else if (h === '#devis') cible = '#/devis';
+    if (cible) history.replaceState(null, '', location.pathname + cible);
+  })();
   window.addEventListener('hashchange', route);
   construireCadre(); route();
 })();
