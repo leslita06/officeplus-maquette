@@ -970,3 +970,7 @@ footer .soc a.rond.wa:hover{background:#25D366}
 .mm-xs{flex-wrap:nowrap;gap:5px}
 @media (max-width:860px){.confiance .mm-xs .pl{width:22px;height:22px;border-radius:6px}}
 @media (max-width:420px){.confiance .mm-xs{gap:4px}.confiance .mm-xs .pl{width:20px;height:20px;border-radius:5px}}
+/* boutons ronds : icône Facebook pleine, WhatsApp blanc centré */
+a.rond.fb img{width:100%!important;height:100%!important}
+.flot a.rond.wa img,footer .soc a.rond.wa img{width:52%!important;height:52%!important}
+footer .soc a.rond.wa{background:#25D366}
