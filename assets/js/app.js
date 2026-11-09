@@ -210,7 +210,7 @@
     $('#f-rch').addEventListener('submit', e => { e.preventDefault(); const q = inp.value.trim(); location.hash = '#/boutique' + (q ? '?q=' + encodeURIComponent(q) : ''); });
   }
   /* logos officiels des moyens de paiement (fonds transparents, assets/img/pay) */
-  const MM = [['wave', 'Wave', 'wave.png'], ['om', 'Orange Money', 'orange-money.svg'], ['mtn', 'MTN MoMo', 'momo-mark.png'], ['moov', 'Moov Money', 'moov-mark.png']];
+  const MM = [['wave', 'Wave', 'wave.png'], ['om', 'Orange Money', 'orange-money.svg'], ['mtn', 'MTN MoMo', 'momo.png'], ['moov', 'Moov Money', 'moov-mark.png']];
   const mmLogo = (k, cls) => { const m = MM.find(x => x[0] === k); return m ? `<span class="pl ${cls || ''}"><img src="assets/img/pay/${m[2]}" alt="${m[1]}" width="32" height="32" loading="eager"></span>` : ''; };
   function mmRang(cls) { return `<div class="mm-rang ${cls || ''}">${MM.map(([k, n]) => `<span title="${n}">${mmLogo(k)}<em>${n}</em></span>`).join('')}</div>`; }
   function payChips() {
