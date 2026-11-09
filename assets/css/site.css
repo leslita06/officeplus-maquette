@@ -974,3 +974,7 @@ footer .soc a.rond.wa:hover{background:#25D366}
 a.rond.fb img{width:100%!important;height:100%!important}
 .flot a.rond.wa img,footer .soc a.rond.wa img{width:52%!important;height:52%!important}
 footer .soc a.rond.wa{background:#25D366}
+/* pied de page : logos de paiement plus lisibles */
+.mm-pied .pl{width:66px!important;height:42px!important;border-radius:10px}
+.mm-pied .pl:not(.pl-i) img{padding:5px 6px}
+.mm-pied{gap:8px;flex-wrap:wrap}
