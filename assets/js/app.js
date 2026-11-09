@@ -1,4 +1,4 @@
-/* Office Plus · site de démonstration v3 (maquette proposée par Yelema, non publiée).
+/* Office Plus · site de démonstration v3 (non publié, données fictives).
    Tout est simulé dans le navigateur : aucun paiement, aucune donnée envoyée. */
 (function () {
   'use strict';
@@ -36,8 +36,8 @@
     dl: sv('<path d="M12 3v12M7 10l5 5 5-5M5 21h14"/>'), recharger: sv('<path d="M3 12a9 9 0 0 1 15-6.7L21 8M21 3v5h-5M21 12a9 9 0 0 1-15 6.7L3 16M3 21v-5h5"/>'),
     camera: sv('<path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.5"/>'),
     etoile: sv('<path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>'), bulle: sv('<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.4A8 8 0 1 1 21 12z"/>'),
-    fb: '<svg class="i" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H8v4h2v8h4v-8h3l1-4h-4V8z"/></svg>',
-    wa: '<svg class="i" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3z"/></svg>'
+    fb: '<svg class="i fb-off" viewBox="100 100 500 500" aria-hidden="true"><g transform="matrix(1,0,0,-1,0,700)"><path transform="translate(600,350)" fill="#0866FF" d="m 0,0 c 0,138.071 -111.929,250 -250,250 -138.071,0 -250,-111.929 -250,-250 0,-117.245 80.715,-215.622 189.606,-242.638 v 166.242 h -51.552 V 0 h 51.552 v 32.919 c 0,85.092 38.508,124.532 122.048,124.532 15.838,0 43.167,-3.105 54.347,-6.211 V 81.986 c -5.901,0.621 -16.149,0.932 -28.882,0.932 -40.993,0 -56.832,-15.528 -56.832,-55.9 V 0 h 81.659 l -14.028,-76.396 h -67.631 V -248.169 C -95.927,-233.218 0,-127.818 0,0"/><path transform="translate(447.9175,273.6036)" fill="#fff" d="M 0,0 14.029,76.396 H -67.63 v 27.019 c 0,40.372 15.838,55.899 56.831,55.899 12.733,0 22.981,-0.31 28.882,-0.931 v 69.253 c -11.18,3.106 -38.509,6.212 -54.347,6.212 -83.539,0 -122.048,-39.441 -122.048,-124.533 V 76.396 h -51.552 V 0 h 51.552 v -166.242 c 19.343,-4.798 39.568,-7.362 60.394,-7.362 10.254,0 20.358,0.632 30.288,1.831 L -67.63,0 Z"/></g></svg>', fbm: '<img class="social-mark fb-mark" src="assets/img/soc/facebook.svg" alt="" width="26" height="26">',
+    wa: '<img class="social-mark wa-mark" src="assets/img/soc/whatsapp.svg" alt="" width="26" height="26">'
   };
 
   /* ---------- outils ---------- */
@@ -98,12 +98,13 @@
     $('#pied').innerHTML = `<div class="wrap"><div class="g">
       <div><img src="assets/img/logo-blanc.svg" alt="Office Plus"><p style="max-width:330px">Fournitures, cartouches, machines et mobilier de bureau à Abidjan. Commandé avant 10 h, livré le jour même.</p>
         <form class="nl" id="nl"><label class="sr" for="nl-m">Votre e-mail</label><input id="nl-m" type="email" placeholder="Votre e-mail pour les offres"><button class="btn btn-v btn-s" type="submit">S'inscrire</button></form>
-        <div class="soc"><a href="https://www.facebook.com/officeplus225" target="_blank" rel="noopener" aria-label="Facebook">${ICO.fb}</a><a href="${waLien('Bonjour Office Plus')}" target="_blank" rel="noopener" aria-label="WhatsApp">${ICO.wa}</a></div></div>
+        <div class="soc"><a class="rond fb" href="https://www.facebook.com/officeplus225" target="_blank" rel="noopener" aria-label="Facebook">${ICO.fbm}</a><a class="rond wa" href="${waLien('Bonjour Office Plus')}" target="_blank" rel="noopener" aria-label="WhatsApp">${ICO.wa}</a></div>
+        <div class="pied-pay"><small>Paiements acceptés</small>${mmRang('mm-pied')}</div></div>
       <div><h4>Boutique</h4><ul>${fams.map(([k, f]) => `<li><a href="#/boutique/${k}">${esc(f.court)}</a></li>`).join('')}</ul></div>
       <div><h4>Services</h4><ul>${OP.SERVICES.map(s => `<li><a href="#/services#${s.id}">${esc(s.titre)}</a></li>`).join('')}<li><a href="#/devis">Demande de devis</a></li></ul></div>
       <div><h4>Entreprises</h4><ul><li><a href="#/entreprises">Compte professionnel</a></li><li><a href="#/entreprises#paiement">Paiement à 30 jours</a></li><li><a href="#/entreprises#ao">Appels d'offres</a></li><li><a href="#/compte">Espace entreprise</a></li><li><a href="#/suivi">Suivre une commande</a></li></ul></div>
       <div><h4>Office Plus</h4><ul><li><a href="#/a-propos">Qui sommes-nous</a></li><li><a href="#/contact">Contact et accès</a></li><li><a href="#/faq">Questions fréquentes</a></li><li><a href="#/mentions">Mentions légales</a></li><li><a href="tel:+2252724314352">${esc(OP.TEL)}</a></li><li><a href="mailto:${OP.MAIL}">${esc(OP.MAIL)}</a></li></ul></div>
-    </div><div class="bas"><span>© 2026 Office Plus · Abidjan, Côte d'Ivoire</span><div><a href="#/mentions">Mentions légales</a><a href="#/mentions#donnees">Données personnelles</a><a href="#/faq">Aide</a><a href="#/admin">Back-office (démo)</a><a href="#/photos">Appli photos (démo)</a><a href="https://leslita06.github.io/officeplus-pilotage/">Tableaux de bord (démo)</a><a href="https://leslita06.github.io/officeplus-catalogue/">Catalogue feuilletable</a></div><span>Maquette proposée par Yelema, non publiée</span></div></div>`;
+    </div><div class="bas"><span>© 2026 Office Plus · Abidjan, Côte d'Ivoire</span><div><a href="#/mentions">Mentions légales</a><a href="#/mentions#donnees">Données personnelles</a><a href="#/faq">Aide</a><a href="#/admin">Back-office (démo)</a><a href="#/photos">Appli photos (démo)</a><a href="https://leslita06.github.io/officeplus-pilotage/">Tableaux de bord (démo)</a><a href="https://leslita06.github.io/officeplus-catalogue/">Catalogue feuilletable</a></div><span class="demo-m">Démonstration, données fictives</span></div></div>`;
     $$('#pied a[href^="tel:"]').forEach(a => a.href = 'tel:+2252724314352');
     $('#mbar').innerHTML = `<a href="#/" data-m="accueil">${ICO.maison}Accueil</a><a href="#/boutique" data-m="boutique">${ICO.grille}Boutique</a><button type="button" data-rch>${ICO.loupe}Chercher</button><a href="#/devis" data-m="devis">${ICO.doc}Devis</a><a href="#/panier" data-m="panier">${ICO.sac}Panier<span class="n" style="display:none">0</span></a>`;
     $('#tiroir').innerHTML = `<div class="tt"><img src="assets/img/logo.svg" alt="Office Plus"><button class="ib" type="button" data-tiroir-x aria-label="Fermer">${ICO.x}</button></div>
@@ -170,7 +171,7 @@
     <section class="confiance"><div class="wrap">
       <div><span class="ic">${ICO.camion}</span><span><b>Livraison le jour même</b>commande avant 10 h, à Abidjan</span></div>
       <div><span class="ic">${ICO.outil}</span><span><b>Mobilier livré et monté</b>sans frais supplémentaires</span></div>
-      <div><span class="ic">${ICO.mobile}</span><span><b>Paiement Mobile Money</b>Wave, Orange, MTN, Moov</span></div>
+      <div><span class="ic">${ICO.mobile}</span><span><b>Paiement Mobile Money</b>${mmRang('mm-xs')}</span></div>
       <div><span class="ic">${ICO.doc}</span><span><b>Facture normalisée</b>FNE, prête pour la comptabilité</span></div>
     </div></section>
     <section class="sec"><div class="wrap">
@@ -208,8 +209,12 @@
     inp.addEventListener('keydown', e => { const L = $$('a', sg); if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); sel = Math.max(0, Math.min(L.length - 1, sel + (e.key === 'ArrowDown' ? 1 : -1))); L.forEach((a, i) => a.classList.toggle('sel', i === sel)); } if (e.key === 'Enter' && sel >= 0 && L[sel]) { e.preventDefault(); location.hash = L[sel].getAttribute('href'); } });
     $('#f-rch').addEventListener('submit', e => { e.preventDefault(); const q = inp.value.trim(); location.hash = '#/boutique' + (q ? '?q=' + encodeURIComponent(q) : ''); });
   }
+  /* logos officiels des moyens de paiement (fonds transparents, assets/img/pay) */
+  const MM = [['wave', 'Wave', 'wave.png'], ['om', 'Orange Money', 'orange-money.svg'], ['mtn', 'MTN MoMo', 'momo-mark.png'], ['moov', 'Moov Money', 'moov-mark.png']];
+  const mmLogo = (k, cls) => { const m = MM.find(x => x[0] === k); return m ? `<span class="pl ${cls || ''}"><img src="assets/img/pay/${m[2]}" alt="${m[1]}" width="32" height="32" loading="eager"></span>` : ''; };
+  function mmRang(cls) { return `<div class="mm-rang ${cls || ''}">${MM.map(([k, n]) => `<span title="${n}">${mmLogo(k)}<em>${n}</em></span>`).join('')}</div>`; }
   function payChips() {
-    return [['Wave', '#1DC4FF'], ['Orange Money', '#FF7900'], ['MTN MoMo', '#FFCB05'], ['Moov Money', '#0066B3'], ['Carte bancaire', '#111418'], ['Paiement à la livraison', '#00A877'], ['Virement à 30 jours', '#5E646B']].map(([n, c]) => `<span><i style="background:${c}"></i>${n}</span>`).join('');
+    return MM.map(([k, n]) => `<span>${mmLogo(k, 'pl-s')}${n}</span>`).join('') + [['Carte bancaire', ICO.carte], ['Paiement à la livraison', ICO.camion], ['Virement à 30 jours', ICO.immeuble]].map(([n, ic]) => `<span><span class="pl pl-s pl-i">${ic}</span>${n}</span>`).join('');
   }
 
   /* ---------- page : boutique ---------- */
@@ -289,7 +294,7 @@
           <button class="btn btn-l btn-b" type="button" id="b-now"${p.stock <= 0 ? ' disabled style="opacity:.4"' : ''}>Commander</button>
           <div class="atouts-f"><div>${ICO.camion}<span>${avantDix() ? `Commandez dans les ${resteAvantDix()} : livré aujourd'hui` : 'Livré demain si commandé maintenant'}</span></div>
             <div>${p.fam === 'mobilier' ? ICO.outil + '<span>Livré et monté sans frais</span>' : ICO.doc + '<span>Facture normalisée FNE</span>'}</div>
-            <div>${ICO.mobile}<span>Wave, Orange Money, MTN, Moov</span></div><div>${ICO.immeuble}<span>Paiement à 30 jours pour les pros</span></div></div>
+            <div>${ICO.mobile}${mmRang('mm-xs')}</div><div>${ICO.immeuble}<span>Paiement à 30 jours pour les pros</span></div></div>
           <div class="acc">
             <details open><summary>Caractéristiques</summary><div class="in"><table>${p.carac.map(([k, v]) => `<tr><td>${esc(k)}</td><td>${esc(v)}</td></tr>`).join('')}<tr><td>Famille</td><td>${esc(f.nom)}</td></tr><tr><td>Vendu par</td><td>${esc(p.unite)}</td></tr></table></div></details>
             <details><summary>Livraison${p.fam === 'mobilier' ? ' et montage' : ''}</summary><div class="in">Livraison le jour même à Abidjan pour toute commande passée avant 10 h, sur le créneau de votre choix.${p.fam === 'mobilier' ? ' Le mobilier est livré et monté par l\'équipe Office Plus, sans frais.' : ''} Hors Abidjan : sur devis.</div></details>
@@ -331,7 +336,7 @@
     app.innerHTML = `<div class="wrap"><div class="ph-tete"><h1 class="h-l">Votre panier</h1></div><div class="duo">
       <div class="boite" id="lignes">${L.map(([id, q]) => { const p = BYID[id]; return `<div class="ligne" data-id="${id}"><a class="vi" href="#/produit/${id}" style="--t:${teinte(p)}">${imgTag(p.img, '')}</a><div><h4>${esc(p.nom)}</h4><span class="compte">${fcfa(p.prix)} / ${esc(p.unite)}</span><br><div class="qte"><button type="button" data-lq="-1" aria-label="Moins">−</button><input type="number" min="1" max="99" value="${q}" aria-label="Quantité"><button type="button" data-lq="1" aria-label="Plus">+</button></div></div><div class="d"><b class="prix" style="font-size:17px">${fcfa(p.prix * q)}</b><button class="sup" type="button" data-sup>Retirer</button></div></div>`; }).join('')}
         <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px"><a class="btn btn-g btn-s" href="#/boutique">Continuer mes achats</a><button class="btn btn-g btn-s" type="button" id="b-devis-p">${ICO.dl}Devis PDF de ce panier</button></div></div>
-      <div>${resume(`<a class="btn btn-n btn-b" href="#/commande" id="b-cmd" style="height:56px">Commander ${ICO.fl}</a>`)}</div>
+      <div>${resume(`<a class="btn btn-n btn-b" href="#/commande" id="b-cmd" style="height:56px">Commander ${ICO.fl}</a>`)}<div class="boite pay-boite"><small>Payez en toute simplicité</small>${mmRang('mm-boite')}<p class="compte">Aussi : carte bancaire, à la livraison, ou virement à 30 jours pour les comptes pro.</p></div></div>
     </div></div>`;
     $('#lignes').addEventListener('click', e => {
       const li = e.target.closest('.ligne'); if (!li) return; const id = li.dataset.id;
@@ -368,7 +373,7 @@
           <div class="champ"><label for="c-commune">Commune</label><select id="c-commune"><option value="">Choisir</option>${OP.COMMUNES.map(c => `<option>${c}</option>`).join('')}</select><span class="err">Choisissez une commune.</span></div>
           <div class="champ"><label for="c-adr">Adresse et repère</label><input id="c-adr" placeholder="Rue, immeuble, étage, repère"><span class="err">Indiquez l'adresse.</span></div>
           <div class="champ full"><label>Créneau</label><div class="choix cren">${cr.map(([v, j, h], i) => `<label><input type="radio" name="cren" value="${v}"${i === 0 ? ' checked' : ''}><span class="c"><b>${j}</b><small>${h}</small></span></label>`).join('')}</div></div></div></div>
-        <div class="boite"><h3><span class="fp-num">3</span>Paiement</h3><div class="choix" id="pays">${Object.entries(PAYS).map(([k, v], i) => `<label><input type="radio" name="pay" value="${k}"${i === 0 ? ' checked' : ''}><span class="c"><b><span class="logo-p" style="background:${v.c};color:${v.tc || '#fff'}">${v.n.slice(0, 2).toUpperCase()}</span>${v.n}</b><small>${v.s}</small></span></label>`).join('')}</div>
+        <div class="boite"><h3><span class="fp-num">3</span>Paiement</h3><div class="choix" id="pays">${Object.entries(PAYS).map(([k, v], i) => `<label><input type="radio" name="pay" value="${k}"${i === 0 ? ' checked' : ''}><span class="c"><b>${v.mm ? mmLogo(k) : `<span class="pl pl-i">${{ carte: ICO.carte, livraison: ICO.camion, bc30: ICO.immeuble }[k]}</span>`}${v.n}</b><small>${v.s}</small></span></label>`).join('')}</div>
           <div class="champs" style="margin-top:14px"><div class="champ" id="ch-mm"><label for="c-mm">Numéro Mobile Money</label><input id="c-mm" type="tel" inputmode="tel" placeholder="07 00 00 00 00"><span class="err">Numéro à 10 chiffres.</span></div></div></div>
       </form>
       <div>${resume(`<button class="btn btn-v btn-b" type="button" id="payer" style="height:56px">Payer ${fcfa(total(L))}</button>`)}<div class="boite" style="margin-top:16px">${L.map(([id, q]) => `<div class="sb"><img src="${img(BYID[id].img)}" alt=""><span>${q} × ${esc(BYID[id].nom)}</span><b>${fcfa(BYID[id].prix * q)}</b></div>`).join('')}</div></div>
@@ -398,7 +403,7 @@
     const etape1 = v.pay === 'carte'
       ? `<div class="champs"><div class="champ full"><label for="cb1">Numéro de carte (fictif)</label><input id="cb1" value="4242 4242 4242 4242" inputmode="numeric"></div><div class="champ"><label for="cb2">Expiration</label><input id="cb2" value="12/28"></div><div class="champ"><label for="cb3">Cryptogramme</label><input id="cb3" value="123"></div></div>`
       : `<p style="font-size:14.5px;color:var(--mute);margin-bottom:6px">Une demande de paiement va être envoyée au <b style="color:var(--ink)">${esc(v.mm)}</b>.</p>`;
-    modale(`<div class="mm-tete"><span class="logo-p" style="background:${p.c};color:${p.tc || '#fff'}">${p.n.slice(0, 2).toUpperCase()}</span><span><b>${p.n}</b><small>Paiement sécurisé · simulation</small></span></div>
+    modale(`<div class="mm-tete">${p.mm ? mmLogo(v.pay, 'pl-l') : `<span class="pl pl-l pl-i">${ICO.carte}</span>`}<span><b>${p.n}</b><small>Paiement sécurisé · simulation</small></span></div>
       <div class="mm-mt"><span>Montant</span><b>${fcfa(mt)}</b></div><div id="mm-corps">${etape1}<button class="btn btn-v btn-b" type="button" id="mm-go" style="margin-top:16px;height:52px">${v.pay === 'carte' ? 'Payer ' + fcfa(mt) : 'Envoyer la demande de paiement'}</button></div>
       <p class="fictif">Démonstration : aucun paiement réel n'est effectué.</p>`);
     $('#mm-go').onclick = () => {
@@ -454,7 +459,7 @@
     d.setFont('helvetica', 'normal'); d.setFontSize(8.5); d.text('Fournitures et mobilier de bureau · Abidjan · NCC 2104959E', 16, 24);
     d.setFontSize(16); d.setFont('helvetica', 'bold'); d.text(titre, 194, 18, { align: 'right' }); d.setFontSize(9); d.setFont('helvetica', 'normal'); d.text(num + ' · ' + dateFr(new Date()), 194, 24, { align: 'right' });
     d.setTextColor(17, 20, 24); d.setFontSize(10); d.text('Client : ' + client, 16, 42);
-    d.setFillColor(253, 241, 230); d.rect(16, 46, 178, 8, 'F'); d.setTextColor(122, 58, 5); d.setFontSize(8.5); d.text('DOCUMENT DE DÉMONSTRATION · maquette proposée par Yelema, sans valeur commerciale ni fiscale', 105, 51.3, { align: 'center' });
+    d.setFillColor(253, 241, 230); d.rect(16, 46, 178, 8, 'F'); d.setTextColor(122, 58, 5); d.setFontSize(8.5); d.text('DOCUMENT DE DÉMONSTRATION · données fictives, sans valeur commerciale ni fiscale', 105, 51.3, { align: 'center' });
     return d;
   }
   function pdfLignes(d, L, y) {
@@ -605,7 +610,7 @@
         <h2>Prix et commandes</h2><p>Les prix sont exprimés en francs CFA. Sur cette maquette, chaque prix indique sa source : facture d'Office Plus du 17/09/2026, page Facebook d'Office Plus, ou « prix indicatif, à confirmer ». Les marchandises ne sont ni échangées ni remboursées passé un délai de 7 jours. Chaque vente donne lieu à une facture normalisée électronique (FNE).</p>
         <h2 id="donnees">Données personnelles</h2><p>Les données saisies (nom, téléphone, adresse de livraison) servent uniquement au traitement des commandes et des devis. Conformément à la loi n° 2013-450 du 19 juin 2013 relative à la protection des données à caractère personnel, vous disposez d'un droit d'accès, de rectification et d'opposition, à exercer auprès d'Office Plus. L'autorité de contrôle est l'ARTCI. Déclaration du traitement : ${ac('à effectuer')}.</p>
         <h2>Propriété intellectuelle</h2><p>Marque et logo Office Plus : propriété d'Office Plus. Photos : illustrations libres de droits (Pexels), à remplacer par les photos d'Office Plus.</p>
-        <h2>Statut de ce site</h2><p>Maquette de démonstration proposée par Yelema, non publiée et non validée par Office Plus. Aucun paiement réel, aucune donnée transmise.</p>
+        <h2>Statut de ce site</h2><p>Site de démonstration, non publié et non validé par Office Plus. Données fictives : aucun paiement réel, aucune donnée transmise.</p>
       </div></div>`;
   }
 
@@ -619,7 +624,8 @@
     let corps = '';
     if (!sec) corps = `<div class="alerte rv"><span class="ic">${ICO.goutte}</span><p><b>Vos toners Canon C-EXV65 noir seront bientôt vides.</b> D'après vos commandes, la dernière cartouche arrive en fin de vie d'ici une dizaine de jours.</p><button class="btn btn-o btn-s" type="button" id="b-alerte">Recommander maintenant</button></div>
       <div class="kpis"><div class="kpi n rv"><small>Achats ce mois-ci</small><b>${fcfa(tot(H[0].lignes))}</b><span>${H[0].lignes.length} lignes · 1 commande</span></div><div class="kpi rv d1"><small>Encours à 30 jours</small><b>${fcfa(tot(H[0].lignes))}</b><span>plafond ${fcfa(S.plafond)}</span></div><div class="kpi rv d2"><small>Délai moyen</small><b>Jour même</b><span>sur les 3 dernières commandes</span></div></div>
-      <div class="carte-bo rv"><h3>Dernières commandes <a class="lien" href="#/compte/commandes" style="font-size:14px">Tout voir</a></h3>${tab(3)}</div>`;
+      <div class="carte-bo rv"><h3>Dernières commandes <a class="lien" href="#/compte/commandes" style="font-size:14px">Tout voir</a></h3>${tab(3)}</div>
+      <div class="carte-bo rv pay-bo"><h3>Moyens de paiement du compte <small>${esc(S.conditions)}</small></h3><div class="pay-bo-g"><div><b>Virement à 30 jours</b><span class="compte">sur bon de commande, plafond ${fcfa(S.plafond)}</span></div>${mmRang('mm-boite')}</div></div>`;
     if (sec === 'commandes') corps = `<div class="carte-bo"><h3>Toutes les commandes <small>${toutes.length}</small></h3>${tab(99)}</div>`;
     if (sec === 'liste') corps = `<div class="carte-bo"><h3>Liste d'achats récurrente <small>chaque mois</small></h3>${OP.RECURRENT.map(([id, q], i) => `<div class="sb"><img src="${img(BYID[id].img)}" alt=""><span>${esc(BYID[id].nom)}</span><div class="qte" style="height:38px"><button type="button" data-rl="${i}" data-d="-1" aria-label="Moins" style="width:34px;height:38px">−</button><input value="${q}" readonly style="width:30px" aria-label="Quantité"><button type="button" data-rl="${i}" data-d="1" aria-label="Plus" style="width:34px;height:38px">+</button></div></div>`).join('')}
       <div style="display:flex;justify-content:space-between;align-items:center;margin-top:18px;flex-wrap:wrap;gap:12px"><b style="font:700 20px var(--fh)" id="ltot"></b><button class="btn btn-n" type="button" id="b-liste">${ICO.sac}Tout mettre au panier</button></div></div>`;

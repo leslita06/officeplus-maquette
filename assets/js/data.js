@@ -1,4 +1,4 @@
-/* Office Plus · données du site de démonstration (maquette proposée par Yelema, non publiée).
+/* Office Plus · données du site de démonstration (non publié, données fictives).
    Sources des prix :
    - 'facture'  : facture FNE d'Office Plus du 17/09/2026.
    - 'facebook' : prix affiché sur une publication de la page Facebook officeplus225 (date de publication non relevée).

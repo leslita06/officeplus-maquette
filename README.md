@@ -1,4 +1,4 @@
-# Office Plus · site internet de démonstration, v3 (proposé par Yelema, non publié)
+# Office Plus · site internet de démonstration, v3 (non publié, données fictives)
 
 Statut : maquette de démonstration préparée pour le prospect Office Plus (Bd de Marseille, Abidjan). Office Plus ne l'a pas commandée et ne l'a pas validée : à ne pas présenter comme son site officiel. La page est en `noindex`. Tout est simulé dans le navigateur : aucun paiement réel, aucune donnée transmise, aucun message WhatsApp envoyé.
 
